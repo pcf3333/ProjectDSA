@@ -35,132 +35,9 @@
 		<!-- Compiled and minified JavaScript -->
     <script src="static/js/materialize.min.js"></script>
 		
-<style>
-	.smallLogIn{
-		color:rgba(0,113,193,1);
-	}
-	.smallLogIn:hover{
-		color:black;
-	}
-	.intro-wrap{
-		margin-top: 1em;
-	}
-	.intro-blok{
-		border-radius:8px;
-		border: rgba(0,113,193,1) solid 2px;
-		background: rgba(0,113,192,0);
-	}
-	.one-third{
-		width:31.3333% !important;
-		margin:0 1%;
-		padding:2em 2em 2em 2em !important;
-	}
-	.iconinicio{
-		float:left;
-		font-size:40px;
-		margin-right:10px;
-		color:black;
-	}
-	.services{
-		background: white !important;
-	}
-	.icono{
-		font-size:75px;
-		color:rgba(0,113,193,0.8);
-	}
-	.titles{
-		margin-bottom:0 !important;
-		float:right;
-	}
-	.beh3{
-		font-weight:bold;
-		font-size:18px;
-	}
-	.beh2{
-		font-size: 30px;
-    font-weight: 900;
-    text-transform: uppercase;
-	}
-	.marge35{
-		padding:0 35px;
-	}
-	.displayeao{
-		display:inline-flex;
-		margin:20px;
-		text-align:justify;
-		width:100%;
-	}
-	
-	.numberht{
-		background: linear-gradient(45deg, rgba(0,113,193,1) 40%, rgba(36,40,42,0.9) 100%);
-    counter-increment: numbers;
-    content: counter(numbers);
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 100%;
-    color: #fff;
-    font-weight: 600;
-		margin-right:5px;
-	}
-	.panelInicial{
-		padding:2em 0 !important;
-		border-top: #0071c170 solid 1px;
-	}
-	@media screen and (max-width: 768px){
-			.services{
-				margin-bottom:15px;
-			}
-			.panelInicial{
-				padding:0 !important;
-			}
-		.displayeao{
-			display:inline-grid;
-			text-align:left;
-		}
-		.margesota{
-			margin-bottom:15px;
-		}
-		.marge35{
-			padding:0
-		}
-		h1{
-			font-size:23px !important;
-			width:75%;
-		}
-		.one-third{
-			padding:0.5em !important;
-			width:32.3333% !important;
-			margin:0 0.5%;
-			text-align:center;
-		}
-		.notinmob{
-			display:none;
-		}
-		.iconinicio{
-			margin:0 25%;
-			width:50%;
-		}
-		.titles{
-			font-size:20px;
-		}
-		.itroBlocks{
-			padding-right:0;
-			padding-left:0;
-		}
-		.coolrow{
-			margin-right:-10px;
-			margin-left:-10px;
-		}
-		.info{
-			padding-left:5px;
-			padding-right:5px;
-		}
+    <style>
 
-	}
-</style>
+    </style>
 
   </head>
   <body>
@@ -174,10 +51,10 @@
 					</div>
 					<div class="col-md-10 text-right menu-1">
 						<ul>
-							<li class="active"><a style="font-weight:bold;font-size:16px" href="/">Home</a></li>
-							<li ><a style="font-weight:bold;font-size:16px" href="shop.html">Shop</a></li>
-							<li ><a style="font-weight:bold;font-size:16px" href="login-request.html">Log In</a></li>
-							<li class="btn-cta"><a href="register.html" id="preregis"><span id="regis" style="border-radius:12px;font-weight:bold;">REGISTER</span></a></li>
+							<li ><a style="font-weight:bold;font-size:16px" href="/">Home</a></li>
+							<li class="active"><a style="font-weight:bold;font-size:16px" href="/shop/">Shop</a></li>
+							<li ><a style="font-weight:bold;font-size:16px" href="/login-request/">Log In</a></li>
+							<li class="btn-cta"><a href="/register/" id="preregis"><span id="regis" style="border-radius:12px;font-weight:bold;">REGISTER</span></a></li>
 						</ul>
 					</div>
 				</div>
@@ -189,78 +66,35 @@
     <div class="colorlib-loader"></div>
 
     <div id="page">
-			<aside id="colorlib-hero">
-				<div class="flexslider">
-					<ul class="slides carousel">
-						<li id="fonsmarc" style="background-image: url('/static/images/background-index.jpg')";>
-							<div class="overlay" style="opacity:0.1;"></div>
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-md-6 col-sm-12 col-md-offset-1 slider-text">
-										<div class="slider-text-inner text-center" style="text-align:left;padding:0;">
-											<h1 style="color:rgb(20,20,20);">JetPack</h1>
-											<p><a href="shop.html" class="btn btnquees" style="padding:14px 26px !important;width:230px;">Shop</a></p>
-											<p><a href="loguin_request.html" class="btn btnquees" style="padding:14px 26px !important;width:230px;">Log In</a></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</li>
-						</ul>
-					</div>
-			</aside>
-
-			<div id="colorlib-services" style="padding:3em 0;">
-				<h2 class="text-center beh2">¿What is GAME_NAME about?</h2>
-				<div class="container" style="padding-bottom:1em;">
-					<div class="row displayeao">
-						<div class="col-lg-5 col-md-5 col-sm-12 margesota" style="border:black solid 2px;">
-							<div class="video" style="background-image: ">
-								<div class="video__inner" style="background-image: ">
-									<a href="" class="video__link" data-lity></a>
-									<p>
-										<img src="" alt="">
-										<span>Short Game Video</span>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-7 col-md-7 col-sm-12 marge35">
-							<p>text</p>
-							<div class="row" style="margin-bottom:20px;border-top:grey solid 1px;border-bottom:grey solid 1px;padding-top:10px;">
-								<div class="list-numbers">
-									<div class="col-md-4">
-										<p style="margin-bottom:6px;"><span class="numberht">1</span><b>feature</b></p>
-										<p>Text</p>
-									</div>
-									<div class="col-md-4">
-										<p style="margin-bottom:6px;"><span class="numberht">2</span><b>feature</b></p>
-										<p>Text</p>
-									</div>
-									<div class="col-md-4">
-										<p style="margin-bottom:6px;"><span class="numberht">3</span><b>feature</b></p>
-										<p>Text</p>
-									</div>
-								</div>
-							</div>
-							<div class="section__body">
-								<h3 class="beh3">Text</h3>
-								<p>Text</p>
-								<p>Text</p>
-							</div>
-						</div>
-					</div>
+			<div id="titolpag">
+				<div class="col-md-12 insideTitol">
+					<h1 class="titlespace">Log in</h1>
 				</div>
-				<div class="col-md-12">
-					<div class="actions text-center">
-						<p>
-							<a href="register.html" class="btn btnquees" style="font-size:20px !important;"><b>Register</b></a><br>
-							<small>¿Already Registered? <a href="login-request.html" class="smallLogIn"><b>Log in</b></a></small>
-						</p>
+			</div>
+
+
+			<div class="colorlib-event" style="padding-top:0;padding-bottom:0;">
+				<div class="containerIN">
+					<div class="row cool_small">
+						<div class="col-md-9-vip" style="margin-bottom:3em;">
+							<div class="row">
+								<div id="colorlib-services" style="padding-top:0;padding-bottom:0;">
+									<div class="innercontainer">
+										<h2 class="beh2">APP DSA</h2>
+										
+										<p>TEXTO</p>
+										
+										
+									</div>
+								</div>		
+							</div>	
+						</div>
 					</div>
 				</div>
 			</div>
-			
+
+
+
 		<div id="colorlib-subscribe" class="subs-img sticky-stopper" style="background-image: url('{% static/images/logo.png' %}');" data-stellar-background-ratio="0.2">
 			<div class="overlay"></div>
 				<div class="container" height="200px;">
@@ -291,13 +125,20 @@
 					</div>
 					<div class="col-md-3 colorlib-widget" style="padding-top:35px;" id="quicklinks">
 						<h4>Acceso Rápido</h4>
-						<p>
-							<ul class="colorlib-footer-links">
-								<li><a href="shop.html"><i class="icon-check"></i>Shop</a></li>
-								<li><a href="login_request.html"><i class="icon-check"></i>Log in</a></li>
-								<li><a href="register.html"><i class="icon-check"></i>Register</a></li>
-							</ul>
-						</p>
+						<!-- <p> -->
+							<!-- <ul class="colorlib-footer-links"> -->
+								<!-- <li><a href="/guias/"><i class="icon-check"></i>Guías</a></li> -->
+								<!-- <li><a href="/bonos/bonos-de-bienvenida/"><i class="icon-check"></i>Bonos</a></li> -->
+								<!-- <li><a href="/oddsmatcher/"><i class="icon-check"></i>Oddsmatcher</a></li> -->
+								<!-- <li><a href="/foro/"><i class="icon-check"></i>Foro</a></li> -->
+								<!-- <li><a href="/contacto/"><i class="icon-check"></i>Contacto</a></li> -->
+								<!-- {% if user.is_authenticated %} -->
+									<!-- <li><a href="/mi-cuenta/"><i class="icon-check"></i> {{user.username}}</a></li> -->
+								<!-- {% else %} -->
+									<!-- <li><a href="/login_request/"><i class="icon-check"></i>Log in</a></li> -->
+								<!-- {% endif %} -->
+							<!-- </ul> -->
+						<!-- </p> -->
 					</div>
 
 					<div class="col-md-3 colorlib-widget" style="padding-top:35px;text-align:left;" id="recentposts">
