@@ -1,8 +1,9 @@
 package edu.upc.dsa;
 
+import edu.upc.dsa.models.Objeto;
+import edu.upc.dsa.models.Usuario;
+
 import java.util.List;
-import java.util.Map;
-import java.util.Queue;
 
 public interface GameManager {
     public List<Usuario> listAlpha();

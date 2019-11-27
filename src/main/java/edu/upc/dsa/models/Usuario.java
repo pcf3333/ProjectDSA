@@ -1,7 +1,9 @@
-package edu.upc.dsa;
+package edu.upc.dsa.models;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.util.RandomUtils;
 
 public class Usuario {

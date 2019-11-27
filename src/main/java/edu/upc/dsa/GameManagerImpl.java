@@ -1,5 +1,7 @@
 package edu.upc.dsa;
 
+import edu.upc.dsa.models.Objeto;
+import edu.upc.dsa.models.Usuario;
 import org.apache.log4j.Logger;
 
 import java.util.*;

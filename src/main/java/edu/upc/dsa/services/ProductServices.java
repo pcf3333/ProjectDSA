@@ -2,6 +2,8 @@ package edu.upc.dsa.services;
 
 
 import edu.upc.dsa.*;
+import edu.upc.dsa.models.Objeto;
+import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.util.RandomUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
