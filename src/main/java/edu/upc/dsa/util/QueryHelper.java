@@ -26,6 +26,12 @@ public class QueryHelper {
         return sb.toString();
     }
 
+    public static String testSelect(){
+        StringBuffer sb = new StringBuffer();
+        sb.append("SELECT * FROM mysql.user");
+        return sb.toString();
+    }
+
     public static String createQuerySELECT(Object entity) {
         StringBuffer sb = new StringBuffer();
         sb.append("SELECT * FROM ").append(entity.getClass().getSimpleName());

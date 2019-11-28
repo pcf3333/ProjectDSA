@@ -9,23 +9,31 @@ import edu.upc.dsa.util.RandomUtils;
 public class Usuario {
     private String id;
     private String nombre;
-    private String apellidos;
+    private String password;
+    private String email;
     private List<Objeto> listaObjetos = new ArrayList<>();
 
     public Usuario(){}
-    public Usuario(String nombre,String apellidos){
+
+    public Usuario(String nombre,String email){
         this.setId(RandomUtils.getId());
         this.setNombre(nombre);
-        this.setApellidos(apellidos);
+        this.setEmail(email);
+
     }
-    public Usuario(String nombre,String apellidos,List<Objeto> o){
-        this.setId(RandomUtils.getId());
-        this.setNombre(nombre);
-        this.setApellidos(apellidos);
-        this.setListaObjetos(o);
-    }
+//    public Usuario(String nombre,String email,List<Objeto> o){
+//        this.setId(RandomUtils.getId());
+//        this.setNombre(nombre);
+//        this.setEmail(email);
+//        this.setListaObjetos(o);
+//    }
 
 
+    public String getEmail(){return email;}
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getNombre() {
         return nombre;
@@ -51,11 +59,4 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
 }

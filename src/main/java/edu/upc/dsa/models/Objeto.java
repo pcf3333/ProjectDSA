@@ -3,6 +3,10 @@ package edu.upc.dsa.models;
 public class Objeto {
     private String objeto;
     private String propiedades;
+    private int vida;
+    private int ataque;
+    private int escudo;
+    private int speed;
 
     public Objeto(){}
     public Objeto(String objeto, String propiedades){

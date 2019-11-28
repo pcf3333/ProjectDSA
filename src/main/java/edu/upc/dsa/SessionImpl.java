@@ -3,9 +3,7 @@ package edu.upc.dsa;
 import edu.upc.dsa.util.ObjectHelper;
 import edu.upc.dsa.util.QueryHelper;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.List;
 
@@ -66,5 +64,15 @@ public class SessionImpl implements Session {
 
     public List<Object> query(String query, Class theClass, HashMap params) {
         return null;
+    }
+
+    public ResultSet simpleQuery(String query) {
+        try {
+            Statement st = conn.createStatement();
+            return st.executeQuery(query);
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 }

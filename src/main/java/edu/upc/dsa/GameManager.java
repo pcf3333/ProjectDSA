@@ -8,7 +8,7 @@ import java.util.List;
 public interface GameManager {
     public List<Usuario> listAlpha();
     public void addUser(Usuario u);
-    public Usuario modifyUser(String id,String nombre,String apellidos,List<Objeto> objetos);
+    public Usuario modifyUser(String id,String nombre,String email,List<Objeto> objetos);
     public int numberUsers();
     public Usuario infoUser(String id);
     public int addObject(Objeto o,String id);

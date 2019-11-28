@@ -1,9 +1,10 @@
 package edu.upc.dsa.services;
-
+import edu.upc.dsa.*;
 
 import edu.upc.dsa.*;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
+import edu.upc.dsa.util.QueryHelper;
 import edu.upc.dsa.util.RandomUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,7 +15,10 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.ResultSet;
 import java.util.*;
+
+import static edu.upc.dsa.FactorySession.*;
 
 @Api(value = "/", description = "Endpoint to Track Service")
 @Path("/")
@@ -27,11 +31,11 @@ public class ProductServices {
         this.gm = GameManagerImpl.getInstance();
         if (entrada){
         GameManagerImpl Impl = GameManagerImpl.getInstance();
-        Usuario juan = new Usuario("Juan", "Perez");
+        Usuario juan = new Usuario("Juan", "juan@mail.com");
         gm.addUser(juan);
-        Usuario andrea = new Usuario("Andrea", "Sanchez");
+        Usuario andrea = new Usuario("Andrea", "andrea.mail.com");
         gm.addUser(andrea);
-        Usuario pere = new Usuario("Pere", "Coll");
+        Usuario pere = new Usuario("Pere", "pere@guapo.com");
         gm.addUser(pere);
         entrada=false;
         }
@@ -46,11 +50,15 @@ public class ProductServices {
     @Path("/users")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsers() {
+        Session session = FactorySession.openSession();
+        ResultSet rs = session.simpleQuery(QueryHelper.testSelect());
 
         List<Usuario> users = gm.listAlpha();
 
         GenericEntity<List<Usuario>> entity = new GenericEntity<>(users){};
-        return Response.status(201).entity(entity).build()  ;
+        return Response.status(201).entity(entity).build();
+
+
     }
 
     @POST
@@ -64,7 +72,7 @@ public class ProductServices {
     @Path("/adduser")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response newUser(Usuario u) {
-        if (u.getNombre()==null || u.getApellidos()==null)  return Response.status(500).entity(u).build();
+        if (u.getNombre()==null || u.getEmail()==null)  return Response.status(500).entity(u).build();
         u.setId(RandomUtils.getId());
         this.gm.addUser(u);
 
@@ -79,7 +87,7 @@ public class ProductServices {
     @Path("/modifyUser")
     public Response updateUser(Usuario u) {
 
-        Usuario user =gm.modifyUser(u.getId(),u.getNombre(),u.getApellidos(),u.getListaObjetos());
+        Usuario user =gm.modifyUser(u.getId(),u.getNombre(),u.getEmail(),u.getListaObjetos());
 
         if (user == null) return Response.status(404).build();
 

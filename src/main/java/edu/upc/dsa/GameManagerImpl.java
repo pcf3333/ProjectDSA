@@ -35,9 +35,9 @@ public class GameManagerImpl implements GameManager {
 
     }
 
-    public Usuario modifyUser(String id,String nombre,String apellidos,List<Objeto> objetos) {
+    public Usuario modifyUser(String id,String nombre,String email,List<Objeto> objetos) {
         getUsuarios().get(id).setNombre(nombre);
-        getUsuarios().get(id).setApellidos(apellidos);
+        getUsuarios().get(id).setEmail(email);
         getUsuarios().get(id).setListaObjetos(objetos);
         logger.info("Usuario modificado");
         return getUsuarios().get(id);
@@ -89,7 +89,7 @@ public class GameManagerImpl implements GameManager {
 
     public static class CompararUsuarios implements Comparator<Usuario> {
         public int compare(Usuario pr1, Usuario pr2) {
-            return (pr1.getNombre()+pr1.getApellidos()).compareToIgnoreCase(pr2.getNombre()+pr2.getApellidos());
+            return (pr1.getNombre()).compareToIgnoreCase(pr2.getNombre());
         }
     }
 
