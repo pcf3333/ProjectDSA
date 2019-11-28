@@ -68,10 +68,12 @@ public class SessionImpl implements Session {
 
     public ResultSet simpleQuery(String query) {
         try {
+            System.out.println(query);
             Statement st = conn.createStatement();
             return st.executeQuery(query);
         } catch (Exception e) {
-            return null;
+               e.printStackTrace();
+    		return null;
         }
 
     }

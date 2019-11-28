@@ -1,0 +1,10 @@
+sudo 					<div class="col-md-3 colorlib-widget" style="padding-top:35px;" id="quicklinks">
+						<h4>Acceso Rápido</h4>
+						<p>
+							<ul class="colorlib-footer-links">
+								<li><a href="shop.html"><i class="icon-check"></i>Shop</a></li>
+								<li><a href="login-request.html"><i class="icon-check"></i>Log in</a></li>
+								<li><a href="register.html"><i class="icon-check"></i>Register</a></li>
+							</ul>
+						</p>
+					</div>

@@ -51,8 +51,19 @@ public class ProductServices {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsers() {
         Session session = FactorySession.openSession();
-        ResultSet rs = session.simpleQuery(QueryHelper.testSelect());
+ 	ResultSet rs;	
+	try {
+         rs = session.simpleQuery("SELECT * FROM Persons"); //QueryHelper.testSelect());
 
+	rs.next();
+	
+	System.out.println(" "+rs.getObject(1));
+
+	System.out.println(" "+rs.getObject(2));
+	}
+	catch (Exception ex) {
+		ex.printStackTrace();
+	}
         List<Usuario> users = gm.listAlpha();
 
         GenericEntity<List<Usuario>> entity = new GenericEntity<>(users){};
