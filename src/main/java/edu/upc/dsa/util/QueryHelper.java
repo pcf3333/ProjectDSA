@@ -28,7 +28,7 @@ public class QueryHelper {
 
     public static String testSelect(){
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT * FROM gameDB.users");
+        sb.append("SELECT * FROM users");
         return sb.toString();
     }
 

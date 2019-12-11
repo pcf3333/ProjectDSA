@@ -53,7 +53,7 @@ public class ProductServices {
         Session session = FactorySession.openSession();
  	ResultSet rs;	
 	try {
-         rs = session.simpleQuery("SELECT * FROM Persons"); //QueryHelper.testSelect());
+         rs = session.simpleQuery(QueryHelper.testSelect());
 
 	rs.next();
 	
