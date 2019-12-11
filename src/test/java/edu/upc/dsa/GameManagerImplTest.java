@@ -19,9 +19,9 @@ public class GameManagerImplTest {
     @Before
     public void setUp(){
         gameManager = GameManagerImpl.getInstance();
-        Usuario juan=new Usuario("Juan","Perez");
-        Usuario andrea=new Usuario("Andrea","Sanchez");
-        Usuario pere=new Usuario("Pere","Coll");
+        Usuario juan=new Usuario("Juan","Perez","mail@mail.com");
+        Usuario andrea=new Usuario("Andrea","Sanchez","mail@mail.com");
+        Usuario pere=new Usuario("Pere","Coll","mail@mail.com");
         listUsuarios=Map.of("Juan",juan,"Andrea",andrea,"Pere",pere);
 
     }
@@ -34,7 +34,7 @@ public class GameManagerImplTest {
     @Test
     public void testAddUser() {
         //Funcion de anotar una comanda
-        Usuario u=new Usuario("Juanjo","Medina");
+        Usuario u=new Usuario("Juanjo","Medina","mail@mail.com");
         gameManager.addUser(u);
         assertEquals(1, gameManager.numberUsers());
 
@@ -42,21 +42,21 @@ public class GameManagerImplTest {
 
     @Test
     public void testOrdenarAlfa() {
-        Usuario u=new Usuario("Juanjo","Medina");
+        Usuario u=new Usuario("Juanjo","123456","mail@mail.com");
         gameManager.addUser(u);
-        Usuario u1=new Usuario("Andrea","Perez");
+        Usuario u1=new Usuario("Andrea","123456","mail@mail.com");
         gameManager.addUser(u1);
-        assertEquals(gameManager.listAlpha().get(0).getId(),u1.getId());
+        assertEquals(gameManager.listAlpha().get(0).getNombre(),u1.getNombre());
 
     }
     @Test
     public void testAddObject() {
         //Funcion de anotar una comanda
-        Usuario u=new Usuario("Juanjo","Medina");
+        Usuario u=new Usuario("Juanjo","123456","mail@mail.com");
         gameManager.addUser(u);
         Objeto o=new Objeto("Espada","Corta mucho");
-        gameManager.addObject(o,u.getId());
-        assertEquals(1, gameManager.getListObjects(u.getId()).size());
+        gameManager.addObject(o,u.getNombre());
+        assertEquals(1, gameManager.getListObjects(u.getNombre()).size());
 
     }
 }

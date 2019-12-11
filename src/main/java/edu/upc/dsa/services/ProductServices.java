@@ -47,11 +47,9 @@ public class ProductServices {
     List<Usuario> users=new ArrayList<>();
 
 	try {
-<<<<<<< HEAD
          rs = session.simpleQuery(QueryHelper.createSELECTALL("users"));
-=======
-         rs = session.simpleQuery(QueryHelper.testSelect());
->>>>>>> 8e68fb9610eb61a26555cb0441b227c10c3671b3
+
+
 
         while(rs.next()){
             users.add(new Usuario(rs.getString("username"),rs.getString("password"),rs.getString("email")));

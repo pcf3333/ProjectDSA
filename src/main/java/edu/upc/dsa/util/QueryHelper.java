@@ -28,12 +28,10 @@ public class QueryHelper {
 
     public static String createSELECTALL(String table){
         StringBuffer sb = new StringBuffer();
-<<<<<<< HEAD
+
         sb.append("SELECT * FROM");
         sb.append(table);
-=======
-        sb.append("SELECT * FROM users");
->>>>>>> 8e68fb9610eb61a26555cb0441b227c10c3671b3
+
         return sb.toString();
     }
 
