@@ -1,1 +1,3 @@
-sudo nohup mvn exec:java &
+mvn compile
+nohup mvn exec:java &
+
