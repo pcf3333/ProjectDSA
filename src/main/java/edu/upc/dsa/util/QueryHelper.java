@@ -29,7 +29,7 @@ public class QueryHelper {
     public static String createSELECTALL(String table){
         StringBuffer sb = new StringBuffer();
 
-        sb.append("SELECT * FROM");
+        sb.append("SELECT * FROM ");
         sb.append(table);
 
         return sb.toString();

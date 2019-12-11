@@ -47,9 +47,7 @@ public class ProductServices {
     List<Usuario> users=new ArrayList<>();
 
 	try {
-         rs = session.simpleQuery(QueryHelper.createSELECTALL("users"));
-
-
+	    rs = session.simpleQuery(QueryHelper.createSELECTALL("users"));
 
         while(rs.next()){
             users.add(new Usuario(rs.getString("username"),rs.getString("password"),rs.getString("email")));
