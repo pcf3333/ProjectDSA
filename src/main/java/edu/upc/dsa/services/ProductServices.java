@@ -48,10 +48,11 @@ public class ProductServices {
 
 	try {
 	    rs = session.simpleQuery(QueryHelper.createSELECTALL("users"));
-
-        while(rs.next()){
-            users.add(new Usuario(rs.getString("username"),rs.getString("password"),rs.getString("email")));
-        }
+	    rs.next();
+        System.out.println("Step1");
+//        while(rs.next()){
+//            users.add(new Usuario(rs.getString("username"),rs.getString("password"),rs.getString("email")));
+//        }
 
         System.out.println(" "+rs.getObject(1));
 
