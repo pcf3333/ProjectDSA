@@ -1,0 +1,2 @@
+ps axfu|grep java
+

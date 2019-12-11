@@ -1,0 +1,34 @@
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.google.inject.internal.cglib.core.$ReflectUtils$1 (file:/usr/share/maven/lib/guice.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int,java.security.ProtectionDomain)
+WARNING: Please consider reporting this to the maintainers of com.google.inject.internal.cglib.core.$ReflectUtils$1
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m---------------------< [0;36medu.upc.dsa:rest-example2[0;1m >----------------------[m
+[[1;34mINFO[m] [1mBuilding rest-example2 1.0-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m>>> [0;32mexec-maven-plugin:1.2.1:java[m [1m(default-cli)[0;1m > [0;1mvalidate[m @ [36mrest-example2[0;1m >>>[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m<<< [0;32mexec-maven-plugin:1.2.1:java[m [1m(default-cli)[0;1m < [0;1mvalidate[m @ [36mrest-example2[0;1m <<<[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mexec-maven-plugin:1.2.1:java[m [1m(default-cli)[m @ [36mrest-example2[0;1m ---[m
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+nov. 28, 2019 1:49:00 P. M. org.glassfish.grizzly.http.server.NetworkListener start
+INFORMACIÓN: Started listener bound to [147.83.7.206:8080]
+nov. 28, 2019 1:49:00 P. M. org.glassfish.grizzly.http.server.HttpServer start
+INFORMACIÓN: [HttpServer] Started.
+Jersey app started with WADL available at http://147.83.7.206:8080/dsaApp/application.wadl
+Hit enter to stop it...
+nov. 28, 2019 1:49:00 P. M. org.glassfish.grizzly.http.server.NetworkListener shutdownNow
+INFORMACIÓN: Stopped listener bound to [147.83.7.206:8080]
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  8.511 s
+[[1;34mINFO[m] Finished at: 2019-11-28T13:49:00+01:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m

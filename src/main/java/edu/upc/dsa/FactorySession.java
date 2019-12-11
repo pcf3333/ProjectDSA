@@ -16,8 +16,8 @@ public class FactorySession {
         Connection conn = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection("jdbc:mysql://147.83.7.206:3306/test","root","Mazinger72");
-
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/test","root","Mazinger72");
+	    System.out.println("desp CONN");
         } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
