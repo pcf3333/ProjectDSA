@@ -7,7 +7,6 @@ import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.util.RandomUtils;
 
 public class Usuario {
-    private String id;
     private String nombre;
     private String password;
     private String email;
@@ -15,12 +14,12 @@ public class Usuario {
 
     public Usuario(){}
 
-    public Usuario(String nombre,String email){
-        this.setId(RandomUtils.getId());
+    public Usuario(String nombre, String password, String email){
         this.setNombre(nombre);
         this.setEmail(email);
-
+        this.setPassword(password);
     }
+
 //    public Usuario(String nombre,String email,List<Objeto> o){
 //        this.setId(RandomUtils.getId());
 //        this.setNombre(nombre);
@@ -51,12 +50,12 @@ public class Usuario {
         this.listaObjetos = listaObjetos;
     }
 
-    public String getId() {
-        return id;
+    public String getPassword() {
+        return password;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

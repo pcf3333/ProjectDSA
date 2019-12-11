@@ -1,7 +1,6 @@
 package edu.upc.dsa.services;
 import edu.upc.dsa.*;
 
-import edu.upc.dsa.*;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.util.QueryHelper;
@@ -18,8 +17,6 @@ import javax.ws.rs.core.Response;
 import java.sql.ResultSet;
 import java.util.*;
 
-import static edu.upc.dsa.FactorySession.*;
-
 @Api(value = "/", description = "Endpoint to Track Service")
 @Path("/")
 public class ProductServices {
@@ -31,12 +28,6 @@ public class ProductServices {
         this.gm = GameManagerImpl.getInstance();
         if (entrada){
         GameManagerImpl Impl = GameManagerImpl.getInstance();
-        Usuario juan = new Usuario("Juan", "juan@mail.com");
-        gm.addUser(juan);
-        Usuario andrea = new Usuario("Andrea", "andrea.mail.com");
-        gm.addUser(andrea);
-        Usuario pere = new Usuario("Pere", "pere@guapo.com");
-        gm.addUser(pere);
         entrada=false;
         }
 
@@ -50,24 +41,29 @@ public class ProductServices {
     @Path("/users")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsers() {
-        Session session = FactorySession.openSession();
- 	ResultSet rs;	
+
+    Session session = FactorySession.openSession();
+    ResultSet rs;
+    List<Usuario> users=new ArrayList<>();
+
 	try {
-         rs = session.simpleQuery("SELECT * FROM Persons"); //QueryHelper.testSelect());
+         rs = session.simpleQuery(QueryHelper.createSELECTALL("users"));
 
-	rs.next();
-	
-	System.out.println(" "+rs.getObject(1));
+        while(rs.next()){
+            users.add(new Usuario(rs.getString("username"),rs.getString("password"),rs.getString("email")));
+        }
 
-	System.out.println(" "+rs.getObject(2));
+        System.out.println(" "+rs.getObject(1));
+
+        System.out.println(" "+rs.getObject(3));
 	}
 	catch (Exception ex) {
 		ex.printStackTrace();
 	}
-        List<Usuario> users = gm.listAlpha();
 
-        GenericEntity<List<Usuario>> entity = new GenericEntity<>(users){};
-        return Response.status(201).entity(entity).build();
+
+    GenericEntity<List<Usuario>> entity = new GenericEntity<>(users){};
+    return Response.status(201).entity(entity).build();
 
 
     }
@@ -75,7 +71,7 @@ public class ProductServices {
     @POST
     @ApiOperation(value = "Create new user", notes = "hola")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response=Usuario.class),
+            @ApiResponse(code = 201, message = "Successful", response= Usuario.class),
             @ApiResponse(code = 500, message = "Validation Error")
 
     })
@@ -84,7 +80,6 @@ public class ProductServices {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response newUser(Usuario u) {
         if (u.getNombre()==null || u.getEmail()==null)  return Response.status(500).entity(u).build();
-        u.setId(RandomUtils.getId());
         this.gm.addUser(u);
 
         return Response.status(201).entity(u).build();
@@ -98,7 +93,7 @@ public class ProductServices {
     @Path("/modifyUser")
     public Response updateUser(Usuario u) {
 
-        Usuario user =gm.modifyUser(u.getId(),u.getNombre(),u.getEmail(),u.getListaObjetos());
+        Usuario user =gm.modifyUser(u.getNombre(),u.getEmail(),u.getListaObjetos());
 
         if (user == null) return Response.status(404).build();
 

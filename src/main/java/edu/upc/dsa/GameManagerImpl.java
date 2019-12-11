@@ -30,17 +30,17 @@ public class GameManagerImpl implements GameManager {
     }
 
     public void addUser(Usuario u) {
-        getUsuarios().put(u.getId(), u);
+        getUsuarios().put(u.getNombre(), u);
         logger.info("Usuario añadido");
 
     }
 
-    public Usuario modifyUser(String id,String nombre,String email,List<Objeto> objetos) {
-        getUsuarios().get(id).setNombre(nombre);
-        getUsuarios().get(id).setEmail(email);
-        getUsuarios().get(id).setListaObjetos(objetos);
+    public Usuario modifyUser( String nombre, String email, List<Objeto> objetos) {
+        getUsuarios().get(nombre).setNombre(nombre);
+        getUsuarios().get(nombre).setEmail(email);
+        getUsuarios().get(nombre).setListaObjetos(objetos);
         logger.info("Usuario modificado");
-        return getUsuarios().get(id);
+        return getUsuarios().get(nombre);
 
     }
 
@@ -66,8 +66,6 @@ public class GameManagerImpl implements GameManager {
         catch (Exception e){
             return -1;
         }
-
-
     }
 
     public List<Objeto> getListObjects(String id) {

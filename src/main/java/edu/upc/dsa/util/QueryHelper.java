@@ -26,9 +26,10 @@ public class QueryHelper {
         return sb.toString();
     }
 
-    public static String testSelect(){
+    public static String createSELECTALL(String table){
         StringBuffer sb = new StringBuffer();
-        sb.append("SELECT * FROM gameDB.users");
+        sb.append("SELECT * FROM");
+        sb.append(table);
         return sb.toString();
     }
 
