@@ -1,4 +1,6 @@
 package edu.upc.dsa.services;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.cj.xdevapi.JsonArray;
 import edu.upc.dsa.*;
 
 import edu.upc.dsa.models.Objeto;
@@ -10,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import javax.swing.text.html.parser.Entity;
 import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
@@ -45,18 +48,16 @@ public class ProductServices {
     Session session = FactorySession.openSession();
     ResultSet rs;
     List<Usuario> users=new ArrayList<>();
-
 	try {
 	    rs = session.simpleQuery(QueryHelper.createSELECTALL("users"));
-	    rs.next();
-        System.out.println("Step1");
-//        while(rs.next()){
-//            users.add(new Usuario(rs.getString("username"),rs.getString("password"),rs.getString("email")));
-//        }
 
-        System.out.println(" "+rs.getObject(1));
+        while(rs.next()){
+            String a = rs.getString("objects");
+            Objeto[] obj=new ObjectMapper().readValue(a,Objeto[].class);
+            List<Objeto> o = Arrays.asList(obj);
+            users.add(new Usuario(rs.getString("username"),rs.getString("password"),rs.getString("email"),o ));
+        }
 
-        System.out.println(" "+rs.getObject(3));
 	}
 	catch (Exception ex) {
 		ex.printStackTrace();

@@ -20,12 +20,12 @@ public class Usuario {
         this.setPassword(password);
     }
 
-//    public Usuario(String nombre,String email,List<Objeto> o){
-//        this.setId(RandomUtils.getId());
-//        this.setNombre(nombre);
-//        this.setEmail(email);
-//        this.setListaObjetos(o);
-//    }
+    public Usuario(String nombre, String password, String email,List<Objeto> o){
+        this.setPassword(password);
+        this.setNombre(nombre);
+        this.setEmail(email);
+        this.setListaObjetos(o);
+    }
 
 
     public String getEmail(){return email;}
