@@ -12,11 +12,11 @@ public class Ip {
 				return ip;
 			}
 			else{
-				return "127.0.0.1";
+				return "localhost";
 			}
 		}
 		catch (Exception e){
-			return "127.0.0.1";
+			return "localhost";
 		}
 	}
 }

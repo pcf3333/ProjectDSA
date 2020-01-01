@@ -15,9 +15,9 @@ public class SessionImpl implements Session {
         this.conn = conn;
     }
 
-    public void save(Object entity) {
+    public void save(Object entity, String tableName){
 
-        String insertQuery = QueryHelper.createQueryINSERT(entity);
+        String insertQuery = QueryHelper.createQueryINSERT(entity,tableName);
 
         PreparedStatement pstm = null;
 
@@ -77,4 +77,18 @@ public class SessionImpl implements Session {
         }
 
     }
+
+    public int insertQuery(String query) {
+        try {
+            System.out.println(query);
+            Statement st = conn.createStatement();
+            return st.executeUpdate(query);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+
+    }
+
+
 }

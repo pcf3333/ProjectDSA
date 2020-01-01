@@ -11,13 +11,13 @@ public class QueryHelperTest {
     @Test
     public void testQueryINSERT() {
         Assert.assertEquals("INSERT INTO Employee (ID, name, surname, salary) VALUES (?, ?, ?, ?)",
-                QueryHelper.createQueryINSERT(new Usuario("Juan", "lopez","btyuhn")));
+                QueryHelper.createQueryINSERT(new Usuario("Juan", "lopez","btyuhn"),"users"));
     }
 
     @Test
     public void testQuerySELECT() {
         Assert.assertEquals("SELECT * FROM Employee WHERE ID = ?",
-                QueryHelper.createQuerySELECT(new Usuario("Juan", "lopez","dtrfyguiuoi")));
+                QueryHelper.createQuerySELECT("users","username", "Juan","*"));
     }
 
 

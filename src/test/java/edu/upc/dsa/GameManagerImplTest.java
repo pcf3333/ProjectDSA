@@ -46,7 +46,7 @@ public class GameManagerImplTest {
         gameManager.addUser(u);
         Usuario u1=new Usuario("Andrea","123456","mail@mail.com");
         gameManager.addUser(u1);
-        assertEquals(gameManager.listAlpha().get(0).getNombre(),u1.getNombre());
+        assertEquals(gameManager.listAlpha().get(0).getUsername(),u1.getUsername());
 
     }
     @Test
@@ -54,9 +54,9 @@ public class GameManagerImplTest {
         //Funcion de anotar una comanda
         Usuario u=new Usuario("Juanjo","123456","mail@mail.com");
         gameManager.addUser(u);
-        Objeto o=new Objeto("Espada","Corta mucho");
-        gameManager.addObject(o,u.getNombre());
-        assertEquals(1, gameManager.getListObjects(u.getNombre()).size());
+        Objeto o=new Objeto("Espada","Corta mucho",0,100,10,0);
+        gameManager.addObject(o,u.getUsername());
+        assertEquals(1, gameManager.getListObjects(u.getUsername()).size());
 
     }
 }

@@ -8,7 +8,7 @@ public class SessionTest {
     @Test
     public void addUser() {
         Session session = FactorySession.openSession();
-        session.save(new Usuario("Toni", "kskks","erftyhujik,l"));
+        session.save(new Usuario("Toni", "kskks","erftyhujik,l"),"users");
         session.close();
     }
 }

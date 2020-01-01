@@ -3,28 +3,28 @@ package edu.upc.dsa.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.upc.dsa.models.Objeto;
-import edu.upc.dsa.util.RandomUtils;
-
 public class Usuario {
-    private String nombre;
+    private String username;
     private String password;
     private String email;
-    private List<Objeto> listaObjetos = new ArrayList<>();
+    private int money;
+    private List<Objeto> objects = new ArrayList<>();
 
     public Usuario(){}
 
     public Usuario(String nombre, String password, String email){
-        this.setNombre(nombre);
+        this.setUsername(nombre);
         this.setEmail(email);
         this.setPassword(password);
+        this.money=300;
     }
 
     public Usuario(String nombre, String password, String email,List<Objeto> o){
         this.setPassword(password);
-        this.setNombre(nombre);
+        this.setUsername(nombre);
         this.setEmail(email);
-        this.setListaObjetos(o);
+        this.setObjects(o);
+        this.money=300;
     }
 
 
@@ -34,20 +34,20 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public List<Objeto> getListaObjetos() {
-        return listaObjetos;
+    public List<Objeto> getObjects() {
+        return objects;
     }
 
-    public void setListaObjetos(List<Objeto> listaObjetos) {
-        this.listaObjetos = listaObjetos;
+    public void setObjects(List<Objeto> objects) {
+        this.objects = objects;
     }
 
     public String getPassword() {
@@ -58,4 +58,11 @@ public class Usuario {
         this.password = password;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
 }

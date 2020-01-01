@@ -4,6 +4,7 @@ import edu.upc.dsa.util.Ip;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.TimeZone;
 
 public class FactorySession {
     public static Session openSession() {
@@ -16,8 +17,8 @@ public class FactorySession {
         Connection conn = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            conn = DriverManager.getConnection("jdbc:mysql://"+ Ip.getIP()+":3306/gameDB","root","Mazinger72");
-	    System.out.println("desp CONN");
+            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/gameDB","root","Mazinger72");
+	        System.out.println("desp CONN");
         } catch (SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());

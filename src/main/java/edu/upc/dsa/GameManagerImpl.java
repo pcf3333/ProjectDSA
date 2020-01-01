@@ -30,15 +30,15 @@ public class GameManagerImpl implements GameManager {
     }
 
     public void addUser(Usuario u) {
-        getUsuarios().put(u.getNombre(), u);
+        getUsuarios().put(u.getUsername(), u);
         logger.info("Usuario añadido");
 
     }
 
     public Usuario modifyUser( String nombre, String email, List<Objeto> objetos) {
-        getUsuarios().get(nombre).setNombre(nombre);
+        getUsuarios().get(nombre).setUsername(nombre);
         getUsuarios().get(nombre).setEmail(email);
-        getUsuarios().get(nombre).setListaObjetos(objetos);
+        getUsuarios().get(nombre).setObjects(objetos);
         logger.info("Usuario modificado");
         return getUsuarios().get(nombre);
 
@@ -58,7 +58,7 @@ public class GameManagerImpl implements GameManager {
     public int addObject(Objeto o,String id) {
         try {
 
-            getUsuarios().get(id).getListaObjetos().add(o);
+            getUsuarios().get(id).getObjects().add(o);
             logger.info("Objeto añadido");
             return 0;
 
@@ -70,7 +70,7 @@ public class GameManagerImpl implements GameManager {
 
     public List<Objeto> getListObjects(String id) {
         logger.info("Lista de objetos obtenida");
-        return getUsuarios().get(id).getListaObjetos();
+        return getUsuarios().get(id).getObjects();
     }
 
     public void clear(){
@@ -87,7 +87,7 @@ public class GameManagerImpl implements GameManager {
 
     public static class CompararUsuarios implements Comparator<Usuario> {
         public int compare(Usuario pr1, Usuario pr2) {
-            return (pr1.getNombre()).compareToIgnoreCase(pr2.getNombre());
+            return (pr1.getUsername()).compareToIgnoreCase(pr2.getUsername());
         }
     }
 
