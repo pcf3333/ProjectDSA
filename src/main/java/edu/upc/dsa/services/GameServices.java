@@ -53,7 +53,7 @@ public class GameServices {
             String a = rs.getString("objects");
             Objeto[] obj=new ObjectMapper().readValue(a,Objeto[].class);
             List<Objeto> o = Arrays.asList(obj);
-            users.add(new Usuario(rs.getString("username"),rs.getString("password"),rs.getString("email"),o ));
+            users.add(new Usuario(rs.getString("username"),rs.getString("password"),rs.getInt("money"),rs.getString("email"),o ));
         }
 
 	}
@@ -134,7 +134,7 @@ public class GameServices {
             String a = rs.getString("objects");
             Objeto[] obj=new ObjectMapper().readValue(a,Objeto[].class);
             List<Objeto> o = Arrays.asList(obj);
-            u = new Usuario(rs.getString("username"),rs.getString("password"),rs.getString("email"),o );
+            u = new Usuario(rs.getString("username"),rs.getString("password"),rs.getInt("money"),rs.getString("email"),o );
 
             return Response.status(201).entity(u).build();
         }

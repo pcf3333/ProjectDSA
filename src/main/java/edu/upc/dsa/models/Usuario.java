@@ -19,12 +19,12 @@ public class Usuario {
         this.money=300;
     }
 
-    public Usuario(String nombre, String password, String email,List<Objeto> o){
+    public Usuario(String nombre, String password, int money, String email,List<Objeto> o){
         this.setPassword(password);
         this.setUsername(nombre);
         this.setEmail(email);
         this.setObjects(o);
-        this.money=300;
+        this.setMoney(money);
     }
 
 
