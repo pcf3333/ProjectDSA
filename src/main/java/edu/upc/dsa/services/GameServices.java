@@ -96,12 +96,37 @@ public class GameServices {
             @ApiResponse(code = 201, message = "Successful"),
             @ApiResponse(code = 404, message = "User does not exist")
     })
-    @Path("/{username}")
+    @Path("deleteuser/{username}")
     public Response DelelteUser(@PathParam("username") String username) {
         if (username.equals("")) return Response.status(404).build();
         try {
             Session session = FactorySession.openSession();
             int result = session.insertQuery(QueryHelper.createQueryDELETE("users","username", username));
+            if (result==0){
+                return Response.status(404).build();
+            }
+            else {
+                return Response.status(201).build();
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            return Response.status(404).build();
+        }
+    }
+
+    @DELETE
+    @ApiOperation(value = "Delete a object by name", notes = "Deletes a object by object name")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful"),
+            @ApiResponse(code = 404, message = "Object does not exist")
+    })
+    @Path("deleteobject/{name}")
+    public Response DelelteObject(@PathParam("name") String name) {
+        if (name.equals("")) return Response.status(404).build();
+        try {
+            Session session = FactorySession.openSession();
+            int result = session.insertQuery(QueryHelper.createQueryDELETE("objects","objeto", name));
             if (result==0){
                 return Response.status(404).build();
             }
