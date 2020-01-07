@@ -77,7 +77,7 @@ public class GameServices {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response newUser(Usuario u) {
         u.setMoney(200); //Initial money
-        if (u.getUsername()==null || u.getEmail()==null)  return Response.status(500).entity(u).build();
+        if (u.getUsername()==null || u.getEmail()==null)  return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(u).build();
 
         try {
             Session session = FactorySession.openSession();
@@ -87,7 +87,7 @@ public class GameServices {
             ex.printStackTrace();
         }
 
-        return Response.status(201).entity(u).build();
+        return Response.status(201).header("Access-Control-Allow-Origin", "*").entity(u).build();
     }
 
     @DELETE
