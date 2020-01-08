@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.glassfish.jersey.server.ContainerResponse;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
@@ -77,7 +78,7 @@ public class GameServices {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response newUser(Usuario u) {
         u.setMoney(200); //Initial money
-        if (u.getUsername()==null || u.getEmail()==null)  return Response.status(500).header("Access-Control-Allow-Origin", "*").entity(u).build();
+        if (u.getUsername()==null || u.getEmail()==null)  return Response.status(500).entity(u).build();
 
         try {
             Session session = FactorySession.openSession();
@@ -87,7 +88,7 @@ public class GameServices {
             ex.printStackTrace();
         }
 
-        return Response.status(201).header("Access-Control-Allow-Origin", "*").entity(u).build();
+        return Response.status(201).entity(u).build();
     }
 
     @DELETE
@@ -246,7 +247,7 @@ public class GameServices {
             rs = session.simpleQuery(QueryHelper.createSELECTALL("objects"));
 
             while(rs.next()){
-                ObjectList.add(new Objeto(rs.getString("objeto"),rs.getString("propiedades"),rs.getInt("vida"),rs.getInt("ataque"),rs.getInt("escudo"),rs.getInt("speed")));
+                ObjectList.add(new Objeto(rs.getString("objeto"),rs.getString("propiedades"),rs.getString("url"),rs.getInt("vida"),rs.getInt("ataque"),rs.getInt("escudo"),rs.getInt("speed")));
             }
 
             GenericEntity<List<Objeto>> entity = new GenericEntity<>(ObjectList) {};

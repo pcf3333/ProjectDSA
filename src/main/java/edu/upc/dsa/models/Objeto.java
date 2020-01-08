@@ -3,19 +3,21 @@ package edu.upc.dsa.models;
 public class Objeto {
     private String objeto;
     private String propiedades;
+    private String url;
     private int vida;
     private int ataque;
     private int escudo;
     private int speed;
 
     public Objeto(){}
-    public Objeto(String objeto, String propiedades, int vida, int ataque, int escudo, int speed){
+    public Objeto(String objeto, String propiedades, String url, int vida, int ataque, int escudo, int speed){
         setObjeto(objeto);
         setPropiedades(propiedades);
         setVida(vida);
         setAtaque(ataque);
         setEscudo(escudo);
         setSpeed(speed);
+        setUrl(url);
     }
 
     public String getObjeto() {
@@ -64,5 +66,13 @@ public class Objeto {
 
     public int getSpeed() {
         return speed;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
