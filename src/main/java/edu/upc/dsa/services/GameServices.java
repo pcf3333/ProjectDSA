@@ -1,8 +1,8 @@
 package edu.upc.dsa.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Lists;
 import edu.upc.dsa.*;
 
+import edu.upc.dsa.models.Mapa;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.Usuario;
 import edu.upc.dsa.util.QueryHelper;
@@ -10,7 +10,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import org.glassfish.jersey.server.ContainerResponse;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
@@ -283,5 +282,76 @@ public class GameServices {
     }
 
 
+    @POST
+    @ApiOperation(value = "Add a Map", notes = "adds a map to the DB")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful"),
+            @ApiResponse(code = 404, message = "Unable to add this object")
+    })
+    @Path("/addmap")
+    public Response addMap(Mapa m) {
+        if (m.getData()==null || m.getName()==null)  return Response.status(500).entity(m).build();
 
+        try {
+            Session session = FactorySession.openSession();
+            session.insertQuery(QueryHelper.createQueryINSERT(m,"maps"));
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return Response.status(201).entity(m).build();
+    }
+
+
+    @DELETE
+    @ApiOperation(value = "Delete a map by name", notes = "Deletes a map by object name")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful"),
+            @ApiResponse(code = 404, message = "Object does not exist")
+    })
+    @Path("deletemap/{name}")
+    public Response DeleteMap(@PathParam("name") String name) {
+        if (name.equals("")) return Response.status(404).build();
+        try {
+            Session session = FactorySession.openSession();
+            int result = session.insertQuery(QueryHelper.createQueryDELETE("maps","name", name));
+            if (result==0){
+                return Response.status(404).build();
+            }
+            else {
+                return Response.status(201).build();
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            return Response.status(404).build();
+        }
+    }
+
+    @GET
+    @ApiOperation(value = "Get All Maps", notes = "Returns all the maps")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Mapa.class, responseContainer="List"),
+    })
+    @Path("/maps")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getMaps() {
+
+        ResultSet rs;
+        List<Mapa> maps=new ArrayList<>();
+        try {
+            Session session = FactorySession.openSession();
+            rs = session.simpleQuery(QueryHelper.createSELECTALL("maps"));
+            while(rs.next()){
+                maps.add(new Mapa(rs.getString("name"),rs.getString("data")));
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        GenericEntity<List<Mapa>> entity = new GenericEntity<>(maps){};
+        return Response.status(201).entity(entity).build();
+    }
 }
