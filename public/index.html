@@ -325,10 +325,7 @@
 			if (getCookie()){
 				document.getElementById("preregis").href="/myaccount.html";
 				document.getElementById("regis").innerHTML="My Account";
-				document.getElementById("topLogin").onclick=logout(){
-					document.cookie = 'username_form=; Max-Age=-99999999;';
-					window.location = "/";
-				};
+				document.getElementById("topLogin").onclick=function(){logout()};
 				document.getElementById("topLogin").innerHTML="Log Out";
 				document.getElementById("middleLogin1").style.display="none";
 				document.getElementById("middleRegister1").href="/myaccount.html";
@@ -339,6 +336,12 @@
 				document.getElementById("bottomLogin").style.display="none";
 				document.getElementById("bottomRegister").style.display="none";
 			}
+
+			function logout(){
+				document.cookie = 'username_form=; Max-Age=-99999999;';
+				window.location = "/";
+			};
+
 
 			function getCookie() {
 				var nameEQ = "username_form=";
