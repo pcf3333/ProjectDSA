@@ -148,7 +148,7 @@
 						<ul>
 							<li class="active"><a style="font-weight:bold;font-size:16px" href="/">Home</a></li>
 							<li ><a style="font-weight:bold;font-size:16px" href="shop.html">Shop</a></li>
-							<li ><a style="font-weight:bold;font-size:16px" href="login-request.html">Log In</a></li>
+							<li ><a id="topLogin" style="font-weight:bold;font-size:16px" href="login-request.html">Log In</a></li>
 							<li class="btn-cta"><a href="register.html" id="preregis"><span id="regis" style="border-radius:12px;font-weight:bold;">REGISTER</span></a></li>
 						</ul>
 					</div>
@@ -172,8 +172,8 @@
 										<div class="slider-text-inner text-center" style="text-align:left;padding:0;">
 											<h1 style="color:rgb(20,20,20);">JetPack</h1>
 											<p><a href="shop.html" class="btn btnquees" style="padding:14px 26px !important;width:230px;">Shop</a></p>
-											<p><a href="login-request.html" class="btn btnquees" style="padding:14px 26px !important;width:230px;">Log In</a></p>
-                                            <p><a href="register.html" class="btn btnquees" style="padding:14px 26px !important;width:230px;">Register</a></p>
+											<p id="middleLogin1"><a href="login-request.html" class="btn btnquees" style="padding:14px 26px !important;width:230px;">Log In</a></p>
+                                            						<p><a id="middleRegister1" href="register.html" class="btn btnquees" style="padding:14px 26px !important;width:230px;">Register</a></p>
 										</div>
 									</div>
 								</div>
@@ -227,8 +227,8 @@
 				<div class="col-md-12">
 					<div class="actions text-center">
 						<p>
-							<a href="register.html" class="btn btnquees" style="font-size:20px !important;"><b>Register</b></a><br>
-							<small>¿Already Registered? <a href="login-request.html" class="smallLogIn"><b>Log in</b></a></small>
+							<a id="middleRegister" href="register.html" class="btn btnquees" style="font-size:20px !important;"><b>Register</b></a><br>
+							<small id="middleLogin">¿Already Registered? <a href="login-request.html" class="smallLogIn"><b>Log in</b></a></small>
 						</p>
 					</div>
 				</div>
@@ -267,8 +267,8 @@
 						<p>
 							<ul class="colorlib-footer-links">
 								<li><a href="shop.html"><i class="icon-check"></i>Shop</a></li>
-								<li><a href="login-request.html"><i class="icon-check"></i>Log in</a></li>
-								<li><a href="register.html"><i class="icon-check"></i>Register</a></li>
+								<li><a id="bottomLogin" href="login-request.html"><i class="icon-check"></i>Log in</a></li>
+								<li id="bottomRegister"><a  href="register.html"><i class="icon-check"></i>Register</a></li>
 							</ul>
 						</p>
 					</div>
@@ -322,9 +322,26 @@
     <script src="/static/js/modernizr-2.6.2.min.js"></script>
 
 		<script>
+			if (getCookie()){
+				document.getElementById("preregis").href="/myaccount.html";
+				document.getElementById("regis").innerHTML="My Account";
+				document.getElementById("topLogin").onclick=logout(){
+					document.cookie = 'username_form=; Max-Age=-99999999;';
+				};
+				document.getElementById("topLogin").innerHTML="Log Out";
+				document.getElementById("middleLogin1").style.display="none";
+				document.getElementById("middleRegister1").href="/myaccount.html";
+				document.getElementById("middleRegister1").innerHTML="My Account";
+				document.getElementById("middleRegister").href="/myaccount.html";
+				document.getElementById("middleRegister").innerHTML="My Account";
+				document.getElementById("middleLogin").style.display="none";
+				document.getElementById("bottomLogin").style.display="none";
+				document.getElementById("bottomRegister").style.display="none";
+			}
+
+
 			window.onscroll = function() {scrollFunction()};
 			function scrollFunction() {
-				var resp= getCookie();
 				console.log(resp);
 				if (window.screen.width > 768){
 					if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -363,7 +380,10 @@
 						
 				}
 			}
-
+			
+			function logout(){
+				console.log("logout");
+			}
 
 			function getCookie() {
 				var nameEQ = "username_form=";
@@ -371,9 +391,11 @@
 				for(var i=0;i < ca.length;i++) {
 					var c = ca[i];
 					while (c.charAt(0)==' ') c = c.substring(1,c.length);
-					if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+					if (c.indexOf(nameEQ) == 0){
+						 return true;
+					}
 				}
-				return null;
+				return false;
 			}
 		</script>
 		
