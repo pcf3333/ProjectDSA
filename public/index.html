@@ -327,6 +327,7 @@
 				document.getElementById("regis").innerHTML="My Account";
 				document.getElementById("topLogin").onclick=logout(){
 					document.cookie = 'username_form=; Max-Age=-99999999;';
+					window.location = "/";
 				};
 				document.getElementById("topLogin").innerHTML="Log Out";
 				document.getElementById("middleLogin1").style.display="none";
@@ -337,6 +338,19 @@
 				document.getElementById("middleLogin").style.display="none";
 				document.getElementById("bottomLogin").style.display="none";
 				document.getElementById("bottomRegister").style.display="none";
+			}
+
+			function getCookie() {
+				var nameEQ = "username_form=";
+				var ca = document.cookie.split(';');
+				for(var i=0;i < ca.length;i++) {
+					var c = ca[i];
+					while (c.charAt(0)==' ') c = c.substring(1,c.length);
+					if (c.indexOf(nameEQ) == 0){
+						 return true;
+					}
+				}
+				return false;
 			}
 
 
@@ -379,23 +393,6 @@
 					}		
 						
 				}
-			}
-			
-			function logout(){
-				console.log("logout");
-			}
-
-			function getCookie() {
-				var nameEQ = "username_form=";
-				var ca = document.cookie.split(';');
-				for(var i=0;i < ca.length;i++) {
-					var c = ca[i];
-					while (c.charAt(0)==' ') c = c.substring(1,c.length);
-					if (c.indexOf(nameEQ) == 0){
-						 return true;
-					}
-				}
-				return false;
 			}
 		</script>
 		

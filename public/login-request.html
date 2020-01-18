@@ -36,7 +36,20 @@
     <script src="static/js/materialize.min.js"></script>
 		
     <style>
-
+      #loginform{
+	  	margin-bottom:30px;
+	  }
+	  input{
+	  	height:40px !important;
+	  }
+	  .logitext{
+	  	margin-bottom:5px;
+	  	margin-top:20px;
+	  	font-weight:bold;
+	  }
+	  #subbtn{
+	  	background: linear-gradient(45deg, rgba(0,113,193,1) 0%, rgba(36,40,42,0.9) 100%);
+	  }
     </style>
 
   </head>
@@ -79,13 +92,16 @@
 						<div class="col-md-9-vip" style="margin-bottom:3em;">
 							<div class="row">
 								<div id="colorlib-services" style="padding-top:0;padding-bottom:0;">
-									<div class="innercontainer">
-										<h2 class="beh2">APP DSA</h2>
-										
-										<p>TEXTO</p>
-										
-										
-									</div>
+                                    <div class="innercontainer text-center">
+                                        <form method="POST" id="loginform">
+                                            <p class="logitext">Username</p>
+                                            <input type="text" required id="username" />
+                                            <p class="logitext">Password</p>
+                                            <input  type="password" required id="password" />
+                                        </form>
+                                        <button onclick="ajaxCall()" class="btn btn-primary btn-lg btn-learn" id="subbtn" style="color:white;font-weight:bold;font-size:18px;letter-spacing: 6px;padding: 13px 28px !important;" type="button">- Register -</button>
+
+                                    </div>
 								</div>		
 							</div>	
 						</div>
@@ -182,6 +198,45 @@
     <!-- Modernizr JS -->
     <script src="/static/js/modernizr-2.6.2.min.js"></script>
 
+    <script type="text/javascript">
+        function ajaxCall(){
+            var submitbtn = document.getElementById("subbtn");
+            var pass1=document.getElementById("password").value;
+            var username=document.getElementById("username").value;
+
+            if (!pass1.equals("") && !username.equals("")){
+                var resp=$.ajax({url: '/dsaApp/users/'+username,
+                                type:'GET',
+                                success: function(resp){
+                                    console.log(resp);
+                                    saveTheCookie(username);
+                                    location.href=window.location.href.match(/^.*\//);
+                                },
+                                error: function(textStatus, errorThrown) {
+                                    alert("User not found");
+                                }
+
+                });
+            }
+            else{
+                alert("Passwords do not match");
+            }
+
+        }
+
+
+	function saveTheCookie(value) {
+        var today = new Date(); // Actual date
+        var expire = new Date(); // Expiration of the cookie
+
+        var cookie_name = "username_form"; // Name for the cookie to be recognized
+        var number_of_days = 10; // Number of days for the cookie to be valid (10 in this case)
+
+        expire.setTime( today.getTime() + 60 * 60 * 1000 * 24 * number_of_days ); // Current time + (60 sec * 60 min * 1000 milisecs * 24 hours * number_of_days)
+
+        document.cookie = cookie_name + "=" + escape(value) + "; expires=" + expire.toGMTString();
+    }
+    </script>
 
 		<script>
 			window.onscroll = function() {scrollFunction()};

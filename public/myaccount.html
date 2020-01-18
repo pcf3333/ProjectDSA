@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+
+
+
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href='/static/favicon.png' type="image/icon type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JetPack</title>
+    <meta name="author" content="DSA TEAM" />
+    <meta name="description" content="DESCRIPCION DEL JUEGO" />
+    <meta name="author" content="" />
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900" rel="stylesheet">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="static/css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="static/css/icomoon.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="static/css/magnific-popup.css">
+    <!-- Flexslider  -->
+    <link rel="stylesheet" href="static/css/flexslider.css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="static/css/owl.theme.default.min.css">
+    <!-- Flaticons  -->
+    <link rel="stylesheet" href="static/fonts/flaticon/font/flaticon.css">
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="static/css/style.1.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="static/js/materialize.min.js"></script>
+
+    <style>
+
+    </style>
+
+</head>
+<body>
+
+<nav class="colorlib-nav" role="navigation" id="barradenav">
+    <div class="top-menu" id="menutop">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2">
+                    <div id="colorlib-logo"><a href="/" id="titol" ><img class="logo-vilibets" id="titolvb" src="/static/images/logo.png"></a></div>
+                </div>
+                <div class="col-md-10 text-right menu-1">
+                    <ul>
+                        <li ><a style="font-weight:bold;font-size:16px" href="/">Home</a></li>
+                        <li ><a style="font-weight:bold;font-size:16px" href="shop.html">Shop</a></li>
+                        <li ><a id="topLogin" style="font-weight:bold;font-size:16px" onclick="logout();">Log In</a></li>
+                        <li class="btn-cta"><a href="myaccount.html" id="preregis"><span id="regis" style="border-radius:12px;font-weight:bold;">My Account</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<div class="colorlib-loader"></div>
+
+<div id="page">
+    <div id="titolpag">
+        <div class="col-md-12 insideTitol">
+            <h1 class="titlespace">Shop</h1>
+        </div>
+    </div>
+
+
+    <div class="colorlib-event" style="padding-top:0;padding-bottom:0;">
+        <div class="containerIN">
+            <div class="row cool_small">
+                <div class="col-md-9-vip" style="margin-bottom:3em;">
+                    <div class="row">
+                        <div id="colorlib-services" style="padding-top:0;padding-bottom:0;">
+                            <div class="innercontainer text-center">
+                                <h2 class="beh2">my account</h2>
+
+                                <p id="usernamehere"></p>
+                                <p id="emailhere"></p>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="colorlib-subscribe" class="subs-img sticky-stopper" style="background-image: url('{% static/images/logo.png' %}');" data-stellar-background-ratio="0.2">
+        <div class="overlay"></div>
+        <div class="container" height="200px;">
+        </div>
+    </div>
+</div>
+
+<footer id="colorlib-footer">
+    <div class="container">
+        <div class="row row-pb-md" style="padding-bottom:2em !important;">
+            <div class="col-md-4 colorlib-widget infdc" style="padding-top:35px;">
+                <h4 onclick="GoAboutUs()" class="gohand">About Us</h4>
+                <p onclick="GoAboutUs()" class="gohand" style="text-align:center;margin-right:20px;"> We are a group of students of UPC university. In the DSA subject we built this game. Enjoy.</p>
+                <p style="text-align:center;">
+                <ul class="colorlib-social-icons">
+                    <li><a target="_blank" rel="noopener noreferrer" style="font-size:22px;margin-left:8px;color:blue;" href=""><i class="icon-facebook22"></i></a></li>
+                </ul>
+                <ul class="colorlib-social-icons">
+                    <li><a target="_blank" rel="noopener noreferrer" style="font-size:22px;margin-left:8px;color:blue;" href=""><i class="icon-twitter2"></i></a></li>
+                </ul>
+                <ul class="colorlib-social-icons">
+                    <li><a target="_blank" rel="noopener noreferrer" style="font-size:22px;margin-left:8px;color:blue;" href=""><i class="icon-telegram"></i></a></li>
+                </ul>
+                <ul class="colorlib-social-icons">
+                    <li><a target="_blank" rel="noopener noreferrer" style="font-size:22px;margin-left:8px;color:blue;" href=""><i class="icon-instagram"></i></a></li>
+                </ul>
+                </p>
+            </div>
+            <div class="col-md-4 colorlib-widget infdc" style="padding-top:35px;">
+                <h4>Quick Links</h4>
+                <p>
+                <ul class="colorlib-footer-links">
+                    <li><a href="index.html"><i class="icon-check"></i>Home</a></li>
+                </ul>
+                </p>
+            </div>
+
+            <div class="col-md-4 colorlib-widget infdc">
+                <h4>Contact Information</h4>
+                <ul class="colorlib-footer-links">
+                    <li>Castelldefels,<br> Spain</li>
+                    <li><a><i class="icon-phone"></i> +34 *** ** ** **</a></li>
+                    <li><a href="mailto:vilibets.spain@gmail.com"><i class="icon-envelope"></i> mail@gmail.com</a></li>
+                    <li><a target="_blank" rel="noopener noreferrer" href="https://www.google.es/maps/@41.3844801,2.153439,13z?hl=en"><i class="icon-location4"></i> Castelldefels, BCN</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</div>
+
+</div>
+
+<!-- jQuery -->
+<script src="/static/js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="/static/js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="/static/js/bootstrap.js"></script>
+<!-- Carousel Swipe -->
+<script src="/static/js/jquery.bcSwipe.min.js"></script>
+<!-- Bootstrap -->
+<script src="/static/js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="/static/js/jquery.waypoints.min.js"></script>
+<!-- Stellar Parallax -->
+<script src="/static/js/jquery.stellar.min.js"></script>
+<!-- Flexslider -->
+<script src="/static/js/jquery.flexslider-min.js"></script>
+<!-- Owl carousel -->
+<script src="/static/js/owl.carousel.min.js"></script>
+<!-- Magnific Popup -->
+<script src="/static/js/jquery.magnific-popup.min.js"></script>
+<script src="/static/js/magnific-popup-options.js"></script>
+<!-- Counters -->
+<script src="/static/js/jquery.countTo.js"></script>
+<!-- Main -->
+<script src="/static/js/main.js"></script>
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!-- Modernizr JS -->
+<script src="/static/js/modernizr-2.6.2.min.js"></script>
+
+<script type="text/javascript">
+            var user=document.getElementById("usertext");
+            var email=document.getElementById("mailtext");
+
+            function getCookie() {
+                var nameEQ = "username_form=";
+                var ca = document.cookie.split(';');
+                for(var i=0;i < ca.length;i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                    if (c.indexOf(nameEQ) == 0){
+                        return c.substring(nameEQ.length,c.length);
+                    }
+                }
+                return null;
+            }
+            var name=getCookie();
+
+            var resp=$.ajax({url: '/dsaApp/users/'+name,
+                            type:'GET',
+                            success: function(resp){
+                                console.log(resp);
+                            },
+                            error: function(textStatus, errorThrown) {
+                                alert("User not found");
+                            }
+
+            });
+
+
+			function logout(){
+				document.cookie = 'username_form=; Max-Age=-99999999;';
+				window.location = "/";
+			}
+
+
+			window.onscroll = function() {scrollFunction()};
+			function scrollFunction() {
+				if (window.screen.width > 768){
+					if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+						document.getElementById("titolvb").style.height = "50px";
+						document.getElementById("menutop").style.padding = "12px 20px";
+						document.getElementById("menutop").style.paddingBottom = "0px";
+						document.getElementById("menutop").style.paddingTop = "6px";
+						document.getElementById("titolvb").style.paddingBottom = "11px";
+						document.getElementById("titolvb").style.paddingTop = "4px";
+					}
+					else {
+						document.getElementById("menutop").style.padding = "40px 30px";
+						document.getElementById("menutop").style.paddingTop = "15px";
+						document.getElementById("menutop").style.paddingBottom = "0px";
+						document.getElementById("titolvb").style.height = "60px";
+						document.getElementById("titolvb").style.paddingTop = "0";
+						document.getElementById("titolvb").style.paddingBottom = "15px";
+					}
+				}
+				else{
+					if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+						document.getElementById("titolvb").style.height = "45px";
+						document.getElementById("titolvb").style.paddingBottom = "5px";
+						document.getElementById("menutop").style.padding = "10px 0.8em";
+						document.getElementById("menutop").style.paddingBottom = "5px";
+						document.getElementById("titolvb").style.paddingBottom = "0";
+						document.getElementsByClassName("colorlib-nav-toggle")[0].style.top="0.85em";
+					}
+					else {
+						document.getElementById("menutop").style.padding = "14px 1.2em";
+						document.getElementById("menutop").style.paddingBottom="5px";
+						document.getElementById("titolvb").style.height = "60px";
+						document.getElementById("titolvb").style.paddingBottom = "10px";
+						document.getElementsByClassName("colorlib-nav-toggle")[0].style.top="1.3em";
+					}
+
+				}
+			}
+		</script>
+
+
+<script type="text/javascript">
+					if ($(window).width() < 770) {
+							$('#menulangsmall').css('display', 'inline-block');
+							$('#menulang').css('display', 'none');
+					}
+					else{
+							$('#menulangsmall').css('display', 'none');
+							$('#menulang').css('display', 'inline-block');
+					}
+			 $(window).resize(function() {
+					if ($(window).width() < 770) {
+							$('#menulangsmall').css('display', 'inline-block');
+							$('#menulang').css('display', 'none');
+					}
+					else{
+							$('#menulangsmall').css('display', 'none');
+							$('#menulang').css('display', 'inline-block');
+					}
+				});
+		</script>
+
+
+</body>
+</html>
+
