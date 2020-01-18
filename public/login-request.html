@@ -204,7 +204,7 @@
             var pass1=document.getElementById("password").value;
             var username=document.getElementById("username").value;
 
-            if (!pass1.equals("") && !username.equals("")){
+            if (pass1!="" && username!=""){
                 var resp=$.ajax({url: '/dsaApp/users/'+username,
                                 type:'GET',
                                 success: function(resp){

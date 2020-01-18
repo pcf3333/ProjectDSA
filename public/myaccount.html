@@ -80,7 +80,7 @@
                     <div class="row">
                         <div id="colorlib-services" style="padding-top:0;padding-bottom:0;">
                             <div class="innercontainer text-center">
-                                <h2 class="beh2">my account</h2>
+                                <h2 class="beh2">My Account</h2>
 
                                 <p id="usernamehere"></p>
                                 <p id="emailhere"></p>
@@ -182,8 +182,8 @@
 <script src="/static/js/modernizr-2.6.2.min.js"></script>
 
 <script type="text/javascript">
-            var user=document.getElementById("usertext");
-            var email=document.getElementById("mailtext");
+            var user=document.getElementById("usernamehere");
+            var email=document.getElementById("emailhere");
 
             function getCookie() {
                 var nameEQ = "username_form=";
@@ -203,6 +203,8 @@
                             type:'GET',
                             success: function(resp){
                                 console.log(resp);
+                                user.innerHTML=resp["username"];
+                                email.innerHTML=resp["email"];
                             },
                             error: function(textStatus, errorThrown) {
                                 alert("User not found");
