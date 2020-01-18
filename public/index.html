@@ -324,6 +324,7 @@
 		<script>
 			window.onscroll = function() {scrollFunction()};
 			function scrollFunction() {
+				getTheCookie();
 				if (window.screen.width > 768){
 					if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
 						document.getElementById("titolvb").style.height = "50px";
@@ -360,6 +361,26 @@
 					}		
 						
 				}
+			}
+
+
+			function getTheCookie() {
+				var cookie_name = "username_form";
+				var return_value = null;
+
+				var pos_start = document.cookie.indexOf(" " + cookie_name + "=");
+				if (pos_start == -1) document.cookie.indexOf(cookie_name + "=");
+
+				if (pos_start != -1) { // Cookie already set, read it
+					pos_start++; // Start reading 1 character after
+					var pos_end = document.cookie.indexOf(";", pos_start); // Find ";" after the start position
+
+					if (pos_end == -1) pos_end = document.cookie.length;
+					return_value = unescape( document.cookie.substring(pos_start, pos_end) );
+				}
+				console.log(return_value);
+
+				return return_value; // null if cookie doesn't exist, string otherwise
 			}
 		</script>
 		

@@ -209,53 +209,45 @@
   <script type="text/javascript">
         function ajaxCall(){
 		var submitbtn = document.getElementById("subbtn");
-		var resp=$.ajax({url: '/dsaApp/adduser',
-						type:'POST',
-						dataType: "json",
-						data:{
-							username:$('#username').val(),
-							email:$('#email').val(),
-							password1:$('#password').val(),
-							password2:$('#passwordc').val(),
-							action: 'post'
-						},
-						success: function(resp){
-								console.log(resp);
-								console.log(resp["Errors"].username);
-								if (resp.Valid==false){
-									if (resp["Errors"].username !== undefined ){
-										alert("El nombre de usuario ya está en uso!");
-									}
-									else if (resp["Errors"].email !== undefined ){
-										alert("La dirección mail ya está en uso!");
-									}
-									else if (resp["Errors"].password2 !== undefined ){
-										if (document.getElementById("id_password1").value!=document.getElementById("id_password2").value){
-											alert("Las contraseñas no coinciden!");
-										}
-										else{
-											alert("Contraseña demasiado simple");
-										}
-									}
-									submitbtn.disabled=false;
-									return false
-								}
-								else{
-									if (document.getElementById("CheckBox1").checked == false){
-										alert("Debes aceptar los términos primero");
-									}
-									else{
-										console.log("valid");
-										submitbtn.type="submit";
-										document.getElementById("regiform").submit();
-										return true
-									}
-								}
-						}
+		var pass1=document.getElementById("password").value;
+		var pass2=document.getElementById("passwordc").value;
+		var username=document.getElementById("username").value;
+		var email=document.getElementById("email").value;
+		var formulari =document.getElementById("regiform");
 
-		});
+		if (pass1 == pass2){
+			var jsonData = '{"username":"'+username+'","email":"'+email+'","password":"'+pass1+'","objects":[]}';
+			var resp=$.ajax({url: '/dsaApp/adduser',
+							type:'POST',
+							dataType: "json",
+							data: jsonData,
+							contentType: "application/json",
+							success: function(resp){
+								console.log("valid");
+                                saveTheCookie(username);
+								location.href=window.location.href.match(/^.*\//);
+							}
+
+			});
+		}
+		else{
+			alert("Passwords do not match");
+		}
 
 	}
+
+
+	function saveTheCookie(value) {
+        var today = new Date(); // Actual date
+        var expire = new Date(); // Expiration of the cookie
+
+        var cookie_name = "username_form"; // Name for the cookie to be recognized
+        var number_of_days = 10; // Number of days for the cookie to be valid (10 in this case)
+
+        expire.setTime( today.getTime() + 60 * 60 * 1000 * 24 * number_of_days ); // Current time + (60 sec * 60 min * 1000 milisecs * 24 hours * number_of_days)
+
+        document.cookie = cookie_name + "=" + escape(value) + "; expires=" + expire.toGMTString();
+    }
     </script>
 
 		<script>
