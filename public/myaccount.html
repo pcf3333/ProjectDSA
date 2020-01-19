@@ -36,7 +36,35 @@
     <script src="static/js/materialize.min.js"></script>
 
     <style>
-
+	.article-entry .blog-img{
+		height:150px !important;
+		margin-top: 10px;
+	}
+	.object{
+		margin-bottom:40px;
+		cursor:pointer;
+		transition:all 150ms;
+	}
+	.object:hover{
+		transform:scale(1.02);
+	}
+	.notthatrow{
+		margin-left:5% !important;
+		margin-right:5% !important;
+	}
+	#descart{
+		padding:0.5em 0;
+		padding-bottom:0;
+	}
+	@media screen and (max-width: 768px){
+		.article-entry .blog-img{
+			height:100px !important;
+		}
+		#descart p{
+			padding-bottom:8px;
+			margin-bottom:10px;
+		}
+	}
     </style>
 
 </head>
@@ -53,7 +81,7 @@
                     <ul>
                         <li ><a style="font-weight:bold;font-size:16px" href="/">Home</a></li>
                         <li ><a style="font-weight:bold;font-size:16px" href="shop.html">Shop</a></li>
-                        <li ><a id="topLogin" style="font-weight:bold;font-size:16px" onclick="logout();">Log In</a></li>
+                        <li ><a id="topLogin" style="font-weight:bold;font-size:16px" onclick="logout();">Log Out</a></li>
                         <li class="btn-cta"><a href="myaccount.html" id="preregis"><span id="regis" style="border-radius:12px;font-weight:bold;">My Account</span></a></li>
                     </ul>
                 </div>
@@ -80,12 +108,25 @@
                     <div class="row">
                         <div id="colorlib-services" style="padding-top:0;padding-bottom:0;">
                             <div class="innercontainer text-center">
-                                <h2 class="beh2">My Account</h2>
+                                <div class="col-md-6 text-center">
+                                    <h2 class="beh2">My Account</h2>
+                                    <p><b>Username: </b><span id="usernamehere"></span></p>
+                                    <p><b>Email: </b><span id="emailhere"></span></p>
+                                    <p><b>Money: </b><span id="moneyhere"></span> coins</p>
+                                </div>
 
-                                <p id="usernamehere"></p>
-                                <p id="emailhere"></p>
+                                <div class="col-md-6 text-center">
+                                    <h2 class="beh2">My Stats</h2>
+                                    <p><b>Attack: </b><span id="attackhere"></span></p>
+                                    <p><b>Life: </b><span id="lifehere"></span></p>
+                                    <p><b>Shield: </b><span id="shieldhere"></span></p>
+                                    <p><b>Speed: </b><span id="speedhere"></span></p>
+                                </div>
 
+                                <h2 class="beh2">My Objects</h2>
+                                <div class="row notthatrow" id="objectss" style="padding-top:1em;">
 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -184,6 +225,16 @@
 <script type="text/javascript">
             var user=document.getElementById("usernamehere");
             var email=document.getElementById("emailhere");
+            var money=document.getElementById("moneyhere");
+            var attack=document.getElementById("attackhere");
+            var speed=document.getElementById("speedhere");
+            var life=document.getElementById("lifehere");
+            var shield=document.getElementById("shieldhere");
+            var objects=document.getElementById("objectss");
+            var sumaAtt=0;
+            var sumaLif=0;
+            var sumaEsc=0;
+            var sumaSpe=0;
 
             function getCookie() {
                 var nameEQ = "username_form=";
@@ -205,6 +256,22 @@
                                 console.log(resp);
                                 user.innerHTML=resp["username"];
                                 email.innerHTML=resp["email"];
+                                money.innerHTML=resp["money"];
+
+                                console.log(resp["objects"]);
+                                for (i = 0; i < resp["objects"].length; i++){
+                                    sumaAtt+=resp["objects"][i]["ataque"];
+                                    sumaLif+=resp["objects"][i]["vida"];
+                                    sumaEsc+=resp["objects"][i]["escudo"];
+                                    sumaSpe+=resp["objects"][i]["speed"];
+                                    objects.innerHTML+='<div class="col-md-10 col-md-offset-1 object" style="background-color:#e8e8e8;border-radius:5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"><div class="ribbon ribbon-top-left"><span>'+resp["precio"]+' coins</span></div><article class="article-entry scalable"><div class="col-md-3"><div class="blog-img" style="background-size: contain;background-image: url('+resp["url"]+');opacity:0.8;border-radius:3px;cursor:pointer"></div></div><div class="col-md-9 noPaddingBro"><div class="desc" id="descart"><h2 class="articletitle" style="border-bottom: 1px solid grey;padding:0 0.2em;"><a></a>'+resp["objeto"]+'</h2><p>'+resp["propiedades"]+'</p><p>Attack: '+resp["ataque"]+'</p><p>Shield: '+resp["escudo"]+'</p><p>Life: '+resp["vida"]+'</p><p>Speed: '+resp["speed"]+'</p></div></div></article></div>'
+                                }
+                                attack.innerHTML=sumaAtt;
+                                speed.innerHTML=sumaSpe;
+                                life.innerHTML=sumaLif;
+                                shield.innerHTML=sumaEsc;
+
+
                             },
                             error: function(textStatus, errorThrown) {
                                 alert("User not found");
