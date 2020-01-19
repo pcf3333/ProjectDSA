@@ -8,7 +8,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<link rel="icon" href='/static/favicon.png' type="image/icon type">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NOMBRE DE EL JUEGO</title>
+    <title>Astro Escape</title>
     <meta name="author" content="DSA TEAM" />
     <meta name="description" content="DESCRIPCION DEL JUEGO" />
 		<meta name="author" content="" />
@@ -40,6 +40,15 @@
 		height:150px !important;
 		margin-top: 10px;
 	}
+	.buttonBuy{
+		border: solid #4A944A 2px;
+		border-radius:10px;
+		background:#A1FFA1;
+		float:right;
+	}
+	.bottonBuy:hover{
+		transform:scale(1.1);
+	}
 	.object{
 		margin-bottom:40px;
 		cursor:pointer;
@@ -61,6 +70,7 @@
 		border: #B2A444 solid 3px;
 		border-radius:20px;
 		height:60px;
+		z-index:10;
 		width:150px;
 		position:fixed;
 		bottom:40px;
@@ -245,11 +255,13 @@
 			var moneyVal=document.getElementById("moneyVal");
             var shop=document.getElementById("shopp");
             var data = "";
+            var mydata="";
             var resp=$.ajax({url: '/dsaApp/objects',
                             type:'GET',
                             success: function(resp){
+                                data=resp;
                                 for (i = 0; i < resp.length; i++){
-                                    shop.innerHTML+='<div class="col-md-10 col-md-offset-1 object" style="background-color:#e8e8e8;border-radius:5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"><div class="ribbon ribbon-top-left"><span>'+resp[i]["price"]+'</span></div><article class="article-entry scalable"><div class="col-md-3"><div class="blog-img" style="background-size: contain;background-image: url('+resp[i]["url"]+');opacity:0.8;border-radius:3px;cursor:pointer"></div></div><div class="col-md-9 noPaddingBro"><div class="desc" id="descart"><h2 class="articletitle" style="border-bottom: 1px solid grey;padding:0 0.2em;"><a></a>'+resp[i]["objeto"]+'</h2><p>'+resp[i]["propiedades"]+'</p><p>Attack: '+resp[i]["ataque"]+'</p><p>Shield: '+resp[i]["escudo"]+'</p><p>Life: '+resp[i]["vida"]+'</p><p>Speed: '+resp[i]["speed"]+'</p></div></div></article></div>'
+                                    shop.innerHTML+='<div class="col-md-10 col-md-offset-1 object" style="background-color:#e8e8e8;border-radius:5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"><div class="ribbon ribbon-top-left"><span>'+resp[i]["precio"]+' coins</span></div><article class="article-entry scalable"><div class="col-md-3"><div class="blog-img" style="background-size: contain;background-image: url('+resp[i]["url"]+');opacity:0.8;border-radius:3px;cursor:pointer"></div></div><div class="col-md-9 noPaddingBro"><div class="desc" id="descart"><h2 class="articletitle" style="border-bottom: 1px solid grey;padding:0 0.2em;"><a></a>'+resp[i]["objeto"]+'<button class="buttonBuy" id="'+resp[i]["objeto"]+'" onclick="checkBuy(this)">Buy Now</button></h2><p>'+resp[i]["propiedades"]+'</p><p>Attack: '+resp[i]["ataque"]+'</p><p>Shield: '+resp[i]["escudo"]+'</p><p>Life: '+resp[i]["vida"]+'</p><p>Speed: '+resp[i]["speed"]+'</p></div></div></article></div>'
                                 }
                             },
                             error: function(textStatus, errorThrown) {
@@ -260,13 +272,38 @@
 			var resp=$.ajax({url: '/dsaApp/users/'+name,
                             type:'GET',
                             success: function(resp){
-								moneyVal=resp["money"];
+                                mydata=resp;
+								moneyVal.innerHTML=resp["money"];
                             },
                             error: function(textStatus, errorThrown) {
                                 console("User not found");
                             }
 
             });
+
+
+            function checkBuy(event){
+                var obj=event.id;
+                money=mydata["money"];
+                for (i=0; i<data.length;i++){
+                    console.log(data[i]["objeto"]);
+                    console.log(obj);
+                    if (data[i]["objeto"]==obj){
+                        if (money>=data[i]["precio"]){
+                            if (confirm('Are you sure you want to buy this object?')) {
+                                mydata["money"]-=data[i]["price"];
+                                mydata["objects"].push(data[i]);
+                                alert("Sucessfully added to your item list");
+                            }
+                            break;
+                        }
+                        else{
+                            alert("You don't have enough money!");
+                            break;
+                        }
+                    }
+                }
+            }
 
 
 			window.onscroll = function() {scrollFunction()};

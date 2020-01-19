@@ -78,7 +78,7 @@ public class GameServices {
     @Path("/adduser")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response newUser(Usuario u) {
-        u.setMoney(200); //Initial money
+        u.setMoney(1000); //Initial money
         if (u.getUsername()==null || u.getEmail()==null)  return Response.status(500).entity(u).build();
 
         try {
