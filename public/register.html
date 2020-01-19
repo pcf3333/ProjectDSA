@@ -69,7 +69,7 @@
 					<div class="col-md-10 text-right menu-1">
 						<ul>
 							<li ><a style="font-weight:bold;font-size:16px" href="/">Home</a></li>
-							<li ><a style="font-weight:bold;font-size:16px" href="shop.html">Shop</a></li>
+							<li ><a style="font-weight:bold;font-size:16px" id="topShop" href="shop.html">Shop</a></li>
 							<li ><a style="font-weight:bold;font-size:16px" href="login-request.html">Log In</a></li>
 							<li class="btn-cta"><a href="register.html" id="preregis"><span id="regis" style="border-radius:12px;font-weight:bold;">REGISTER</span></a></li>
 						</ul>
@@ -151,7 +151,7 @@
 					<h4>Quick Links</h4>
 					<p>
 					<ul class="colorlib-footer-links">
-						<li><a href="shop.html"><i class="icon-check"></i>Shop</a></li>
+						<li><a id="bottomShop" href="shop.html"><i class="icon-check"></i>Shop</a></li>
 						<li><a href="login-request.html"><i class="icon-check"></i>Log in</a></li>
 						<li><a href="register.html"><i class="icon-check"></i>Register</a></li>
 					</ul>
@@ -234,6 +234,30 @@
 		}
 
 	}
+
+		function getCookie() {
+			var nameEQ = "username_form=";
+			var ca = document.cookie.split(';');
+			for(var i=0;i < ca.length;i++) {
+				var c = ca[i];
+				while (c.charAt(0)==' ') c = c.substring(1,c.length);
+				if (c.indexOf(nameEQ) == 0){
+					 return true;
+				}
+			}
+			return false;
+		}
+
+        if (!getCookie()){
+			document.getElementById("topShop").href="/login-request.html";
+			document.getElementById("topShop").onclick = function() {
+				alert('Log In First!');
+			};
+			document.getElementById("bottomShop").href="/login-request.html";
+			document.getElementById("bottomShop").onclick= function() {
+				alert('Log In First!');
+			};
+        }
 
 
 	function saveTheCookie(value) {

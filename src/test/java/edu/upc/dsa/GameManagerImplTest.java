@@ -54,7 +54,7 @@ public class GameManagerImplTest {
         //Funcion de anotar una comanda
         Usuario u=new Usuario("Juanjo","123456","mail@mail.com");
         gameManager.addUser(u);
-        Objeto o=new Objeto("Espada","Corta mucho","https://oli.com",0,100,10,0);
+        Objeto o=new Objeto("Espada","Corta mucho","https://oli.com",0,0,100,10,0);
         gameManager.addObject(o,u.getUsername());
         assertEquals(1, gameManager.getListObjects(u.getUsername()).size());
 
