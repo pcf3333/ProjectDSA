@@ -8,7 +8,12 @@ public class Usuario {
     private String password;
     private String email;
     private int money;
+    private int lastMap;
+    private int xPos;
+    private int yPos;
+    private int zPos;
     private List<Objeto> objects = new ArrayList<>();
+
 
     public Usuario(){}
 
@@ -16,15 +21,20 @@ public class Usuario {
         this.setUsername(nombre);
         this.setEmail(email);
         this.setPassword(password);
+
         this.money=300;
     }
 
-    public Usuario(String nombre, String password, int money, String email,List<Objeto> o){
+    public Usuario(String nombre, String password, int money, String email,List<Objeto> o,int lastMap, int xPos, int yPos, int zPos){
         this.setPassword(password);
         this.setUsername(nombre);
         this.setEmail(email);
         this.setObjects(o);
         this.setMoney(money);
+        this.setLastMap(lastMap);
+        this.setxPos(xPos);
+        this.setyPos(yPos);
+        this.setzPos(zPos);
     }
 
 
@@ -64,5 +74,37 @@ public class Usuario {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    public void setLastMap(int lastMap) {
+        this.lastMap = lastMap;
+    }
+
+    public int getLastMap() {
+        return lastMap;
+    }
+
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
+    }
+
+    public int getxPos() {
+        return xPos;
+    }
+
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
+
+    public void setzPos(int zPos) {
+        this.zPos = zPos;
+    }
+
+    public int getzPos() {
+        return zPos;
     }
 }

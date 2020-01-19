@@ -10,6 +10,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.json.simple.JSONObject;
+
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
@@ -53,7 +55,7 @@ public class GameServices {
             String a = rs.getString("objects");
             Objeto[] obj=new ObjectMapper().readValue(a,Objeto[].class);
             List<Objeto> o = Arrays.asList(obj);
-            users.add(new Usuario(rs.getString("username"),rs.getString("password"),rs.getInt("money"),rs.getString("email"),o ));
+            users.add(new Usuario(rs.getString("username"),rs.getString("password"),rs.getInt("money"),rs.getString("email"),o ,rs.getInt("lastMap"),rs.getInt("xPos"),rs.getInt("yPos"),rs.getInt("zPos")));
         }
 
 	}
@@ -159,7 +161,7 @@ public class GameServices {
             String a = rs.getString("objects");
             Objeto[] obj=new ObjectMapper().readValue(a,Objeto[].class);
             List<Objeto> o = Arrays.asList(obj);
-            u = new Usuario(rs.getString("username"),rs.getString("password"),rs.getInt("money"),rs.getString("email"),o );
+            u = new Usuario(rs.getString("username"),rs.getString("password"),rs.getInt("money"),rs.getString("email"),o ,rs.getInt("lastMap"),rs.getInt("xPos"),rs.getInt("yPos"),rs.getInt("zPos"));
 
             return Response.status(201).entity(u).build();
         }
@@ -381,4 +383,32 @@ public class GameServices {
         }
         return Response.status(404).build();
     }
+
+    @GET
+    @ApiOperation(value = "Get the position of user by name", notes = "It returns a JSON with this params: map,xPos,yPos,zPos")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = double[].class, responseContainer=""),
+    })
+    @Path("/getPosition/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUserPos(@PathParam("name") String name) {
+
+        ResultSet rs;
+        try {
+            Session session = FactorySession.openSession();
+            rs = session.simpleQuery(QueryHelper.createQuerySELECT("users","username",name,"*"));
+            rs.last();
+            JSONObject jsonString = new JSONObject();
+            jsonString.put("lastMap", rs.getInt("lastMap"));
+            jsonString.put("xPos", rs.getInt("xPos"));
+            jsonString.put("yPos", rs.getInt("yPos"));
+            jsonString.put("zPos", rs.getInt("zPos"));
+            return Response.status(201).entity(jsonString.toString()).build();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return Response.status(404).build();
+    }
+
 }
