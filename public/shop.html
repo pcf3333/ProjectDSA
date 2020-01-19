@@ -291,8 +291,21 @@
                     if (data[i]["objeto"]==obj){
                         if (money>=data[i]["precio"]){
                             if (confirm('Are you sure you want to buy this object?')) {
-                                mydata["money"]-=data[i]["price"];
+                                mydata["money"]-=data[i]["precio"];
                                 mydata["objects"].push(data[i]);
+
+								var resp=$.ajax({url: '/dsaApp/modifyUser',
+												type:'PUT',
+												dataType: "json",
+												data: JSON.stringify(mydata),
+												contentType: "application/json",
+												success: function(resp){
+													console.log("valid");
+													moneyVal.innerHTML=mydata["money"];
+												}
+
+								});
+
                                 alert("Sucessfully added to your item list");
                             }
                             break;
