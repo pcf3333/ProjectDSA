@@ -387,7 +387,7 @@ public class GameServices {
     @GET
     @ApiOperation(value = "Get the position of user by name", notes = "It returns a JSON with this params: map,xPos,yPos,zPos")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = double[].class, responseContainer=""),
+            @ApiResponse(code = 201, message = "Successful", responseContainer=""),
     })
     @Path("/getPosition/{name}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -400,9 +400,9 @@ public class GameServices {
             rs.last();
             JSONObject jsonString = new JSONObject();
             jsonString.put("lastMap", rs.getInt("lastMap"));
-            jsonString.put("xPos", rs.getInt("xPos"));
-            jsonString.put("yPos", rs.getInt("yPos"));
-            jsonString.put("zPos", rs.getInt("zPos"));
+            jsonString.put("xPos", rs.getDouble("xPos"));
+            jsonString.put("yPos", rs.getDouble("yPos"));
+            jsonString.put("zPos", rs.getDouble("zPos"));
             return Response.status(201).entity(jsonString.toString()).build();
         }
         catch (Exception ex) {

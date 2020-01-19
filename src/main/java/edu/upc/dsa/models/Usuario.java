@@ -9,9 +9,9 @@ public class Usuario {
     private String email;
     private int money;
     private int lastMap;
-    private int xPos;
-    private int yPos;
-    private int zPos;
+    private double xPos;
+    private double yPos;
+    private double zPos;
     private List<Objeto> objects = new ArrayList<>();
 
 
@@ -25,7 +25,7 @@ public class Usuario {
         this.money=300;
     }
 
-    public Usuario(String nombre, String password, int money, String email,List<Objeto> o,int lastMap, int xPos, int yPos, int zPos){
+    public Usuario(String nombre, String password, int money, String email,List<Objeto> o,int lastMap, double xPos, double yPos, double zPos){
         this.setPassword(password);
         this.setUsername(nombre);
         this.setEmail(email);
@@ -84,27 +84,27 @@ public class Usuario {
         return lastMap;
     }
 
-    public void setxPos(int xPos) {
+    public void setxPos(double xPos) {
         this.xPos = xPos;
     }
 
-    public int getxPos() {
+    public double getxPos() {
         return xPos;
     }
 
-    public void setyPos(int yPos) {
+    public void setyPos(double yPos) {
         this.yPos = yPos;
     }
 
-    public int getyPos() {
+    public double getyPos() {
         return yPos;
     }
 
-    public void setzPos(int zPos) {
+    public void setzPos(double zPos) {
         this.zPos = zPos;
     }
 
-    public int getzPos() {
+    public double getzPos() {
         return zPos;
     }
 }
