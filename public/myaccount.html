@@ -203,6 +203,8 @@
                             type:'GET',
                             success: function(resp){
                                 console.log(resp);
+                                user.innerHTML=resp["username"];
+                                email.innerHTML=resp["email"];
                             },
                             error: function(textStatus, errorThrown) {
                                 alert("User not found");

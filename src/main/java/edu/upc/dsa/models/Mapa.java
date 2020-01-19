@@ -1,16 +1,16 @@
 package edu.upc.dsa.models;
 
 public class Mapa {
-    private String name;
+    private int name;
     private String data;
 
     public Mapa(){}
-    public Mapa(String nombre, String data){
+    public Mapa(int nombre, String data){
         setData(data);
         setName(nombre);
     }
 
-    public void setName(String name) {
+    public void setName(int name) {
         this.name = name;
     }
 
@@ -18,7 +18,7 @@ public class Mapa {
         this.data = data;
     }
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 

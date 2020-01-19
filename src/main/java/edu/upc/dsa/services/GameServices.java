@@ -290,7 +290,7 @@ public class GameServices {
     })
     @Path("/addmap")
     public Response addMap(Mapa m) {
-        if (m.getData()==null || m.getName()==null)  return Response.status(500).entity(m).build();
+        if (m.getData()==null)  return Response.status(500).entity(m).build();
 
         try {
             Session session = FactorySession.openSession();
@@ -344,7 +344,7 @@ public class GameServices {
             Session session = FactorySession.openSession();
             rs = session.simpleQuery(QueryHelper.createSELECTALL("maps"));
             while(rs.next()){
-                maps.add(new Mapa(rs.getString("name"),rs.getString("data")));
+                maps.add(new Mapa(rs.getInt("name"),rs.getString("data")));
             }
         }
         catch (Exception ex) {
@@ -353,5 +353,32 @@ public class GameServices {
 
         GenericEntity<List<Mapa>> entity = new GenericEntity<>(maps){};
         return Response.status(201).entity(entity).build();
+    }
+
+
+    @GET
+    @ApiOperation(value = "Get 1 Map", notes = "Returns 1 map by name")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Mapa.class, responseContainer=""),
+    })
+    @Path("/map/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getMap(@PathParam("name") int name) {
+
+        ResultSet rs;
+        try {
+            Session session = FactorySession.openSession();
+            rs = session.simpleQuery(QueryHelper.createSELECTALL("maps"));
+            while(rs.next()){
+                if (rs.getInt("name")==name){
+                    Mapa m = new Mapa(rs.getInt("name"),rs.getString("data"));
+                    return Response.status(201).entity(m).build();
+                }
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return Response.status(404).build();
     }
 }
