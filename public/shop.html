@@ -36,13 +36,53 @@
     <script src="static/js/materialize.min.js"></script>
 		
     <style>
-
+	.article-entry .blog-img{
+		height:150px !important;
+		margin-top: 10px;
+	}
+	.object{
+		margin-bottom:40px;
+		cursor:pointer;
+		transition:all 150ms;
+	}
+	.object:hover{
+		transform:scale(1.02);
+	}
+	.notthatrow{
+		margin-left:5% !important;
+		margin-right:5% !important;
+	}
+	#descart{
+		padding:0.5em 0;
+		padding-bottom:0;
+	}
+	#yourmoney{
+		background-color:#E2D681;
+		border: #B2A444 solid 3px;
+		border-radius:20px;
+		height:60px;
+		width:150px;
+		position:fixed;
+		bottom:40px;
+		right:60px;
+	}
+	@media screen and (max-width: 768px){
+		.article-entry .blog-img{
+			height:100px !important;
+		}
+		#descart p{
+			padding-bottom:8px;
+			margin-bottom:10px;
+		}
+	}
     </style>
 
   </head>
   <body>
 
-	<nav class="colorlib-nav" role="navigation" id="barradenav">
+  <button id="yourmoney"><b>Your money: <span id="moneyVal">0</span> coins</b></button>
+
+  <nav class="colorlib-nav" role="navigation" id="barradenav">
 		<div class="top-menu" id="menutop">
 			<div class="container">
 				<div class="row">
@@ -80,10 +120,12 @@
 							<div class="row">
 								<div id="colorlib-services" style="padding-top:0;padding-bottom:0;">
 									<div class="innercontainer">
-										<h2 class="beh2">The Shop</h2>
-										
-										<p>TEXTO</p>
-										
+										<h2 class="beh2">Buy Whatever You Need Here</h2>
+
+
+										<div class="row notthatrow" id="shopp" style="padding-top:2em;">
+
+										</div>
 										
 									</div>
 								</div>		
@@ -186,6 +228,45 @@
 				document.cookie = 'username_form=; Max-Age=-99999999;';
 				window.location = "/";
 			}
+
+            function getCookie() {
+                var nameEQ = "username_form=";
+                var ca = document.cookie.split(';');
+                for(var i=0;i < ca.length;i++) {
+                    var c = ca[i];
+                    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                    if (c.indexOf(nameEQ) == 0){
+                        return c.substring(nameEQ.length,c.length);
+                    }
+                }
+                return null;
+            }
+            var name=getCookie();
+			var moneyVal=document.getElementById("moneyVal");
+            var shop=document.getElementById("shopp");
+            var data = "";
+            var resp=$.ajax({url: '/dsaApp/objects',
+                            type:'GET',
+                            success: function(resp){
+                                for (i = 0; i < resp.length; i++){
+                                    shop.innerHTML+='<div class="col-md-10 col-md-offset-1 object" style="background-color:#e8e8e8;border-radius:5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);"><div class="ribbon ribbon-top-left"><span>'+resp[i]["price"]+'</span></div><article class="article-entry scalable"><div class="col-md-3"><div class="blog-img" style="background-size: contain;background-image: url('+resp[i]["url"]+');opacity:0.8;border-radius:3px;cursor:pointer"></div></div><div class="col-md-9 noPaddingBro"><div class="desc" id="descart"><h2 class="articletitle" style="border-bottom: 1px solid grey;padding:0 0.2em;"><a></a>'+resp[i]["objeto"]+'</h2><p>'+resp[i]["propiedades"]+'</p><p>Ataque: '+resp[i]["ataque"]+'</p><p>Escudo: '+resp[i]["escudo"]+'</p><p>Vida: '+resp[i]["vida"]+'</p><p>Speed: '+resp[i]["speed"]+'</p></div></div></article></div>'
+                                }
+                            },
+                            error: function(textStatus, errorThrown) {
+                                alert("User not found");
+                            }
+
+            });
+			var resp=$.ajax({url: '/dsaApp/users/'+name,
+                            type:'GET',
+                            success: function(resp){
+								moneyVal=resp["money"];
+                            },
+                            error: function(textStatus, errorThrown) {
+                                console("User not found");
+                            }
+
+            });
 
 
 			window.onscroll = function() {scrollFunction()};

@@ -248,7 +248,7 @@ public class GameServices {
             rs = session.simpleQuery(QueryHelper.createSELECTALL("objects"));
 
             while(rs.next()){
-                ObjectList.add(new Objeto(rs.getString("objeto"),rs.getString("propiedades"),rs.getString("url"),rs.getInt("vida"),rs.getInt("ataque"),rs.getInt("escudo"),rs.getInt("speed")));
+                ObjectList.add(new Objeto(rs.getString("objeto"),rs.getString("propiedades"),rs.getString("url"),rs.getInt("precio"),rs.getInt("vida"),rs.getInt("ataque"),rs.getInt("escudo"),rs.getInt("speed")));
             }
 
             GenericEntity<List<Objeto>> entity = new GenericEntity<>(ObjectList) {};

@@ -4,13 +4,14 @@ public class Objeto {
     private String objeto;
     private String propiedades;
     private String url;
+    private int precio;
     private int vida;
     private int ataque;
     private int escudo;
     private int speed;
 
     public Objeto(){}
-    public Objeto(String objeto, String propiedades, String url, int vida, int ataque, int escudo, int speed){
+    public Objeto(String objeto, String propiedades, String url, int precio, int vida, int ataque, int escudo, int speed){
         setObjeto(objeto);
         setPropiedades(propiedades);
         setVida(vida);
@@ -18,6 +19,7 @@ public class Objeto {
         setEscudo(escudo);
         setSpeed(speed);
         setUrl(url);
+        setPrecio(precio);
     }
 
     public String getObjeto() {
@@ -74,5 +76,13 @@ public class Objeto {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 }
